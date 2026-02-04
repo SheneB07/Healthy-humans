@@ -1,0 +1,41 @@
+What is visible before you start placing an order?
+-A starting screen
+
+How do you start an order, and are there different options at the start?
+-You choose between eating in or taking out 
+
+How do you add an item to your order?
+-you have to click on the food icon and add it to your order
+
+How do you remove an item from your order?
+-You click the cart button and press the garbage can button or the individual minus button
+
+How are the items displayed or located at the screen.
+-Menu on top with categories, items in the middle taking up most of the screen, and on the bottom the cart and checkout buttons. 
+
+How does the interaction take place? Do you only have to click or is scrolling also possible?
+-Clicking and scrolling
+
+How does the checkout process take place?
+-You click on the cart and immediately go to payment
+
+What does the design look like?
+-Very simple with the company colours. Calm
+
+What do the images and lettering look like?
+-Normal and readable plus professional 
+
+How is the image quality?
+-Very good
+
+How big is the screen?
+-150 bij 90 cm
+
+What is the screen ratio and position?
+-16:9
+
+Where and how is the kiosk positioned in relation to its surroundings?
+-Its pointed sideways to the entryway
+
+How many kiosks are present?
+-4
