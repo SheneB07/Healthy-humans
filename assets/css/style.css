@@ -14,13 +14,10 @@
     font-style: normal;
 }
 
-.renosRoughregular {
-    font-family: 'renos_roughregular', sans-serif;
-    /* use font */
-}
-
-.NotoSans {
-    font-family: 'Noto Sans', sans-serif;
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 
 main {
@@ -37,7 +34,7 @@ main {
 
 .bigLogo {
     width: 500px;
-    height: 500px;
+    height: auto;
     animation: logoPulse 5s infinite;
     margin-top: 30%;
 }
@@ -46,17 +43,15 @@ main {
     0% {
         transform: scale(1);
     }
-
     50% {
         transform: scale(1.1);
     }
-
     100% {
         transform: scale(1);
     }
 }
 
-.diningOptions {
+.diningOptions, .languageOptions {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -66,9 +61,10 @@ main {
     width: 100%;
 }
 
-#DiningIn, #DiningOut {
 
-    height: 80%;
+#DiningIn, #DiningOut, #EnglishOption, #DutchOption {
+
+    height: 90%;
     width: 25%;
     background-color: #ff7520;
     border: none;
@@ -79,6 +75,8 @@ main {
     margin: 10px;
     transition: background-color 0.3s ease;
     text-align: center;
-    
+    font-size: 50px;
+    font-display: auto;
+    padding: 2.5%;
 }
 
