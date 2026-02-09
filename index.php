@@ -6,11 +6,11 @@ include_once 'connection.php';
 $languageChoice = 'Dutch';
 
 //prep for language switching. default is dutch, will rewrite later
-if (isset($_SESSION['languageOption'])){
+if (isset($_SESSION['languageOption'])) {
     if ($_SESSION['languageOption'] == 'English') {
         $languageChoice = 'English';
     } elseif ($_SESSION['languageOption'] == 'Dutch') {
-        $languageChoice = 'Dutch';    
+        $languageChoice = 'Dutch';
     }
 }
 ?>
@@ -30,6 +30,10 @@ if (isset($_SESSION['languageOption'])){
 
     <main class="start-page">
         <img class="bigLogo" src="assets/img/logo_big_complete_transparent.webp" alt="big logo">
+
+        <!-- prep for full start screen workings. Will need to work with covers to first cover all this, then reveal the language options and
+ let user make the choice, and then cover language options again and reveal dining options, which then saves the choices and sends
+ the user to the menu screen. save via session.-->
 
         <!-- <div class="diningOptions">
             <div id="DiningIn" class="option">
