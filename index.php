@@ -4,8 +4,6 @@ session_destroy();
 
 include_once 'connection.php';
 
-$languageChoice = 'Dutch';
-
 //prep for language switching. default is dutch, will rewrite later
 if (isset($_SESSION['languageOption'])) {
     if ($_SESSION['languageOption'] == 'English') {
@@ -31,7 +29,7 @@ if (isset($_SESSION['languageOption'])) {
 <body>
 
     <main class="start-page">
-        <img class="bigLogo" src="assets/img/logo_big_complete_transparent.webp" alt="big logo">
+        <img id="bigLogo" src="assets/img/logo_big_complete_transparent.webp" alt="big logo">
 
          <div id="languageOptions">
             <div id="EnglishOption" data-language="English" class="languageOption">

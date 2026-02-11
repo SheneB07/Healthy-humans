@@ -19,3 +19,11 @@ html, body {
     padding: 0;
     height: 100%;
 }
+
+h1, h2 {
+    font-family: 'renos_roughregular', sans-serif;
+}
+
+p {
+    font-family: 'Noto Sans', sans-serif;
+}

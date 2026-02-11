@@ -1,0 +1,60 @@
+main {
+    background: #FCF5DA;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    justify-content: top;
+    height: 100vh;
+    width: auto;
+}
+
+h1 {
+    font-size: 4em;
+}
+
+#cartLogo {
+    width: 486px;
+    height: auto;
+}
+
+#cartItems {
+    padding: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: top;
+    height: auto;
+    width: 100%;
+}
+
+#cartItem {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: top;
+}
+
+#itemInfo{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: top;
+    width: 100%;
+    height: auto;
+    gap: 20px;
+}
+
+#blackLine {
+
+}
+
+#IngredientList {
+    /* text-align: left; */
+}
+
+#editingCartItem{
+
+}
