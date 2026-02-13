@@ -76,7 +76,7 @@ h2{
 }
 
 .categories-box{
-    width: 365px;
+    width: 295px;
     height: 1400px;
     background-color: #F4E9C0;
     border-radius: 0px 30px 30px 0px;
@@ -86,8 +86,8 @@ h2{
 }
 
 #option-button{
-    width: 280px;
-    height: 165px;
+    width: 210px;
+    height: 130px;
     border-radius: 30px;
     background-color: white;
     border: 1px solid black;
@@ -100,13 +100,31 @@ h2{
 }
 
 #category-icon{
-    width: 100px;
+    width: 80px;
     height: auto;
 }
 
 h1{
-    font-size: 30px;
+    font-size: 23px;
     font-family: NotoSans, sans-serif;
+    margin: 0.5px;
+}
+
+.menu-items{
+    width: 70%;
+    padding: 30px;
+    display: flex;
+    flex-direction: row;
+    gap: 70px;
+    justify-content: center;
+    
+}
+
+.menu-item{
+    width: 300px;
+    height: 375px;
+    background-color: white;
+    border-radius: 10%;
 }
 
 /* Onderkant van scherm */
