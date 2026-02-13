@@ -16,18 +16,56 @@
         <div id="cartItems">
             <div id="cartItem">
                 <div id="itemInfo">
-                    <img src="assets/img/Gemini_Generated_Image_l0r92pl0r92pl0r9.webp" style="width:50px; height:50px;" alt="cart item image">
-                    <p>1X Morning Boost Açaí Bowl</p>
-                    <p>200 Cal</p> <p>€3,00</p>
+                    <div id="itemName">
+                        <img src="assets/img/Gemini_Generated_Image_l0r92pl0r92pl0r9.webp"" alt="cart item image">
+                        <p>1X Morning Boost Açaí Bowl</p>
+                    </div>
+                    <div id="itemCaloriesAndPrice">
+                        <p>200 Cal</p>
+                        <p>€3,00</p>
+                    </div>
                 </div>
-                <hr style="color:#000000; width: 60%;">
-                <div id="ingredientList">
-                    <p>Ingredient, another ingredient, another ingredient</p>
-                </div>
+                <hr>
                 <div id="editingCartItem">
-                    <button id="removeButton">-</button> <p>Adding Amount</p> <button id="addButton">+</button>
-                    <img src="assets/img/editIcon.png" alt="Edit Item">
-                    <img src="assets/img/trashIcon.png" alt="Remove Item">
+                    <div id="lefBottom">
+                        <p id="ingredientList">Ingredient, another ingredient, another ingredient</p>
+                        <div id="addingFunction">
+                            <button id="removeButton">-</button>
+                              <p>1</p> 
+                            <button id="addButton">+</button>
+                        </div>
+                    </div>
+                    <div id="editAndDeleteFunction">
+                        <img src="assets/img/editIcon.png" id="editIcon" alt="Edit Item">
+                        <img src="assets/img/trashIcon.png" id="trashIcon" alt="Remove Item">
+                    </div>
+                </div>
+            </div>
+            <div id="cartItem">
+                <div id="itemInfo">
+                    <div id="itemName">
+                        <img src="assets/img/Gemini_Generated_Image_l0r92pl0r92pl0r9.webp"" alt="cart item image">
+                        <p>1X Morning Boost Açaí Bowl</p>
+                    </div>
+                    <div id="itemCaloriesAndPrice">
+                        <p>200 Cal</p>
+                        <p>€3,00</p>
+                    </div>
+                </div>
+                <hr>
+                <div id="editingCartItem">
+                    <div id="lefBottom">
+                        <p id="ingredientList">Ingredient, another ingredient, another ingredient</p>
+                        <div id="addingFunction">
+                            <button id="removeButton">-</button>
+                              <p>1</p> 
+                            <button id="addButton">+</button>
+                        </div>
+                    </div>
+                    <div id="editAndDeleteFunction">
+                        <img src="assets/img/editIcon.png" id="editIcon" alt="Edit Item">
+                        <img src="assets/img/trashIcon.png" id="trashIcon" alt="Remove Item">
+                    </div>
                 </div>
             </div>
         </div>
