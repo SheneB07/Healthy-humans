@@ -18,4 +18,108 @@ html, body {
     margin: 0;
     padding: 0;
     height: 100%;
+    background-color: #FCF5DA;
+}
+
+/* Bovenkant van scherm */
+.topbar-container{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.top-left{
+    width: 35%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.top-right{
+    width: 65%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+}
+
+.top-left.top-right:after{
+    display: table;
+    clear: both;
+}
+
+#menu-logo{
+    width: 350px;
+    height: auto;
+}
+
+#menu-topbox{
+    width: 100%;
+    height: 200px;
+    background-color: #8CD003;
+    border-radius: 0px 0px 0px 30px;
+}
+
+h2{
+    font-size: 60px;
+    font-family: NotoSans, sans-serif;
+}
+
+/* Midden van scherm */
+.content-container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.categories-box{
+    width: 365px;
+    height: 1400px;
+    background-color: #F4E9C0;
+    border-radius: 0px 30px 30px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#option-button{
+    width: 280px;
+    height: 165px;
+    border-radius: 30px;
+    background-color: white;
+    border: 1px solid black;
+    margin-top: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+#category-icon{
+    width: 100px;
+    height: auto;
+}
+
+h1{
+    font-size: 30px;
+    font-family: NotoSans, sans-serif;
+}
+
+/* Onderkant van scherm */
+.bottombar-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#pink-bar{
+    width: 500px;
+    height: 55px;
+    border-radius: 40px;
+    background-color: #FFB181;
 }
