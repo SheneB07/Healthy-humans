@@ -97,6 +97,13 @@ h2{
     justify-content: center;
     flex-direction: column;
     overflow: hidden;
+    
+}
+
+#option-button:hover{
+    cursor: pointer;
+    background-color: #8CD003;
+    transform: scale(0.5);
 }
 
 #category-icon{
@@ -114,10 +121,9 @@ h1{
     width: 70%;
     padding: 30px;
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
     gap: 70px;
-    justify-content: center;
-    
 }
 
 .menu-item{

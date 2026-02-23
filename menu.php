@@ -69,20 +69,14 @@ $pdo = null;
         </div>
 
         
-
-<?php
-    foreach($products as $product):
-?>
-        <div class="menu-items">
-            <div class="menu-item">
-                <h3><?= $product['name']; ?></h3>
-            </div>
-<?php 
-    endforeach;
-?>
-            <div class="menu-item">
-                
-            </div>
+<div class="menu-items">
+<?php foreach($products as $product): ?>
+    <div class="menu-item">
+        <h3><?= $product['name']; ?></h3>
+    </div>
+<?php endforeach; ?>
+</div>
+        
         </div>
     </div>
     <div class="bottombar-container">
