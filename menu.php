@@ -2,19 +2,18 @@
 include("connection.php");
 
 try {
-    // Prepare the query to select the name and description
-    $stmt = $pdo->prepare("SELECT * FROM products");
+    $stmt = $pdo->prepare("
+        SELECT products.*, images.filename, images.description AS image_description
+        FROM products
+        LEFT JOIN images ON products.image_id = images.image_id
+    ");
     $stmt->execute();
+    $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // Set the fetch mode to associative array
-    $stmt->setFetchMode(PDO::FETCH_ASSOC);
-    $products = $stmt->fetchAll();  // This stores the result in the variable you use below
-
-    
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
+    exit;
 }
-$pdo = null;
 ?>
 
 <!DOCTYPE html>
@@ -72,7 +71,14 @@ $pdo = null;
 <div class="menu-items">
 <?php foreach($products as $product): ?>
     <div class="menu-item">
-        <h3><?= $product['name']; ?></h3>
+
+        <?php if(!empty($product['filename'])): ?>
+            <img src="assets/img/<?= htmlspecialchars($product['filename']); ?>" id="product-image"
+                 alt="<?= htmlspecialchars($product['description']); ?>">
+        <?php endif; ?>
+
+        <h3><?= htmlspecialchars($product['name']); ?></h3>
+
     </div>
 <?php endforeach; ?>
 </div>
@@ -81,6 +87,9 @@ $pdo = null;
     </div>
     <div class="bottombar-container">
         <div id="pink-bar"></div>
+        <!-- <div id="cart-button">
+            <img src="assets/img/cart.png" id="cart-image">
+        </div> -->
     </div>
 
 </body>
