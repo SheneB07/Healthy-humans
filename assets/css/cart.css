@@ -124,7 +124,7 @@ hr{
     font-size: 25px;
 }
 
-#removeButton, #addButton {
+.removeButton, .addButton {
     width: 40%;
     height: auto;
     font-size: 25px;

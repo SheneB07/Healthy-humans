@@ -1,27 +1,27 @@
 <?php
 session_start();
-$cart = $_SESSION['cart'] ?? [];
+
+if (!isset($_SESSION['cart'])) {
+    $_SESSION['cart'] = [];
+}
+
+$cart = $_SESSION['cart'];
 $itemCount = count($cart);
 
-// if (!isset($_SESSION['cart'])) {
-//     $_SESSION['cart'] = [];
-// }
-
+// // TEMP: seed cart with one Iced Matcha Latte for testing
 // $_SESSION['cart'][] = [
-//     'name' => 'Morning Boost Açaí Bowl',
-//     'category' => 'Bowls',
-//     'description' => 'Spiced chickpeas, shredded carrots, crisp lettuce, and signature hummus in a whole-wheat wrap.',
-//     'price' => 6.00,
-//     'calories' => 350,
-//     'quantity' => 1,
-//     'image' => 'assets/img/Gemini_Generated_Image_l0r92pl0r92pl0r9.webp',
-//     'ingredients' => [
-//         'Açaí',
-//         'Banana',
-//         'Granola',
-//         'Honey'
-//     ]
-// ];
+//     'product_id'  => 26,                 // FK to products.product_id
+//     'category_id' => 6,
+//     'image_id'    => 26,
+//     'name'        => 'Iced Matcha Latte',
+//     'category'    => 'Drinks',          // or whatever label you use
+//     'description' => 'Lightly sweetened matcha green tea with almond milk.',
+//     'price'       => 3.00,
+//     'calories'    => 90,                // from kcal
+//     'quantity'    => 1,
+//     'image'       => 'assets/img/your_matcha_image.webp', // adjust path if needed
+//     'ingredients' => [],                // or fill in if you want
+// ]; 
 ?>
 
 <!DOCTYPE html>
@@ -42,7 +42,7 @@ $itemCount = count($cart);
         <?php if ($itemCount > 0): ?>
             <div id="cartItems" class="<?= $itemCount === 1 ? 'single-item' : 'multiple-items' ?>">
             <?php foreach ($cart as $item) { ?>
-                <div class="cartItem">
+                <div class="cartItem" data-name="<?= htmlspecialchars($item['name'], ENT_QUOTES) ?>">
                     <div class="itemInfo">
                         <div class="itemName">
                             <img src="<?= $item['image'] ?>" alt="cart item image">
@@ -61,9 +61,9 @@ $itemCount = count($cart);
                             </p> -->
                             <p class="ingredientList"><?=$item['description'] ?>
                             <div class="addingFunction">
-                                <button id="removeButton" data-item="<?= $item['name'] ?>">-</button>
-                                <p><?= $item['quantity'] ?></p>
-                                <button id="addButton" data-item="<?= $item['name'] ?>">+</button>
+                                <button class="removeButton" data-item="<?= $item['name'] ?>">-</button>
+                                <p class="itemQuantity"><?= $item['quantity'] ?></p>
+                                <button class="addButton" data-item="<?= $item['name'] ?>">+</button>
                             </div>
                         </div>
                         <div class="editAndDeleteFunction">
@@ -76,7 +76,13 @@ $itemCount = count($cart);
             </div>
 
             <div id="cartTotal" class="center-total">
-                <p>Total: €<?= number_format(array_sum(array_column($cart, 'price')), 2) ?></p>
+                <p>Total: €<span id="cartTotalAmount"><?= number_format(
+                    array_sum(array_map(
+                        fn($item) => ($item['price'] ?? 0) * ($item['quantity'] ?? 1),
+                        $cart
+                    )),
+                    2
+                ) ?></span></p>
             </div>
 
         <?php else: ?>
@@ -97,6 +103,9 @@ $itemCount = count($cart);
             </button>
         </div>
     </main>
+
+    <script src="assets/js/cart.js"></script>
+
 </body>
 
 </html>
