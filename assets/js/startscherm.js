@@ -7,6 +7,9 @@ function startingClick() {
     languageOption.style.display = "flex";
     diningOption.style.display = "none";
 
+    //adds fade out animation for background image
+    document.querySelector("main").classList.add("fade-out");
+
     //Delet the click listener so it only happens once
     document.removeEventListener("click", startingClick);
 }
