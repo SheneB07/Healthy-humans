@@ -18,5 +18,12 @@ html, body {
     margin: 0;
     padding: 0;
     height: 100%;
-    background-color: #FCF5DA;
+}
+
+h1, h2 {
+    font-family: 'renos_roughregular', sans-serif;
+}
+
+p {
+    font-family: 'Noto Sans', sans-serif;
 }

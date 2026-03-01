@@ -1,4 +1,14 @@
 main {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    justify-content: top;
+    height: 100vh;
+    width: auto;
+}
+
+main::before {
     background-image: url(../img/startpaginaBackgroundimg.png);
     background-repeat: no-repeat;
     background-size: cover;
@@ -7,10 +17,19 @@ main {
     flex-direction: column;
     align-items: center;
     justify-content: top;
-    height: 100vh;
+    inset: 0;
+    content: "";
+    position: absolute;
+    transition: opacity 0.5s ease;
+    opacity: 1;
+    z-index: -1;
 }
 
-.bigLogo {
+main.fade-out::before {
+    opacity: 0.5;
+}
+
+#bigLogo {
     width: 500px;
     height: auto;
     animation: logoPulse 5s infinite;
@@ -29,16 +48,21 @@ main {
     }
 }
 
-.diningOptions, .languageOptions {
-    display: flex;
+#diningOptions, #languageOptions {
+    display: none;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     margin-top: 10%;
     height: 500px;
     width: 100%;
+    animation: fadeIn 0.5s ease-in;
 }
 
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
 
 #DiningIn, #DiningOut, #EnglishOption, #DutchOption {
 

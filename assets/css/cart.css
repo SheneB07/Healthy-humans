@@ -1,0 +1,218 @@
+main {
+    background: #FCF5DA;
+    width: 1080px;
+    height: 1920px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+
+h1 {
+    font-size: 4em;
+}
+
+hr{
+    border: 1px solid black;
+    width: 90%;    
+    opacity: 50%;
+    margin-top: -1%;
+}
+
+#cartLogo {
+    width: 486px;
+    height: auto;
+}
+
+#cartItems {
+    flex: 0.8;
+    width: 100%;
+    padding: 20px 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    overflow-y: auto;
+}
+
+.cartItem {
+    width: 85%;
+    background-color: #DEFF78;
+    border-radius: 50px;
+    padding: 40px;
+
+}
+
+.itemName img{
+    border-radius: 10%;
+    width:15%;
+    height:15%;
+    box-shadow: #000 0px 0px 10px;
+}
+
+.itemInfo{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: top;
+    width: 100%;
+    height: auto;
+    gap: 20%;
+    font-size: 25px;
+}
+
+.itemName{
+    width: 50%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5%;
+    padding: 2%;
+}
+
+.itemCaloriesAndPrice{
+    width: 20%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 15%;
+}
+
+
+.editingCartItem{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 15%;
+    margin-left: 5%;
+}
+
+.lefBottom{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: left;
+    width: 100%;
+    text-align: left;
+    padding: 2%;
+    padding-left: 15%;
+}
+
+.ingredientList {
+    width: 100%;
+    text-align: left;
+    font-size: 20px;
+    padding-left: 5%;
+}
+
+.addingFunction{
+    width: 30%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    align-self: left;
+    gap: 10%;
+    font-size: 25px;
+}
+
+.removeButton, .addButton {
+    width: 40%;
+    height: auto;
+    font-size: 25px;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.editAndDeleteFunction{
+    width: 30%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10%;
+    margin-right: 8%;
+}
+
+.editIcon, .trashIcon {
+    width: 20%;
+    height: auto;
+    cursor: pointer;
+    margin-top: 20%;
+}
+
+#cartTotal {
+    background-color: white;
+    border-radius: 20px;
+    padding: 25px 60px;
+    font-size: 35px;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0px 8px 20px rgba(0,0,0,0.15);
+    width: 25%;
+}
+
+.center-total {
+    align-self: center;
+    margin: 30px 0;
+}
+
+.right-total {
+    align-self: flex-end;
+    margin: 20px 80px 40px 0;
+}
+
+.empty-cart {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.emptyMessage {
+    font-size: 60px;
+}
+
+#bottomButtons {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 200px;
+    padding: 40px 0;
+}
+
+#changeOrderButton, #checkoutButton {
+    background-color: #DEFF78;
+    border: none;
+    border-radius: 10px;
+    padding: 1%;
+    font-size: 25px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10%;
+    cursor: pointer;
+    margin-top: 2%;
+    height: 125px;
+    width: 30%;
+    font-size: xx-large;
+    padding: 1%;
+}
+
+#changeOrderButton img, #checkoutButton img {
+    width: 25%;
+    height: auto;
+}
+
