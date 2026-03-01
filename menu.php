@@ -2,11 +2,26 @@
 include("connection.php");
 
 try {
-    $stmt = $pdo->prepare("
-        SELECT products.*, images.filename, images.description AS image_description
-        FROM products
-        LEFT JOIN images ON products.image_id = images.image_id
-    ");
+
+    // Default: no category filter
+    $category_id = $_GET['category'] ?? null;
+
+    if ($category_id) {
+        $stmt = $pdo->prepare("
+            SELECT products.*, images.filename, images.description AS image_description
+            FROM products
+            LEFT JOIN images ON products.image_id = images.image_id
+            WHERE products.category_id = :category_id
+        ");
+        $stmt->bindParam(':category_id', $category_id, PDO::PARAM_INT);
+    } else {
+        $stmt = $pdo->prepare("
+            SELECT products.*, images.filename, images.description AS image_description
+            FROM products
+            LEFT JOIN images ON products.image_id = images.image_id
+        ");
+    }
+
     $stmt->execute();
     $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -21,6 +36,7 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/menu.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
@@ -37,34 +53,43 @@ try {
     </div>
     <div class="content-container">
         <div class="categories-box">
-            <div id="option-button">
-                <img src="assets/img/highlights.png" id="category-icon">
-                <h1>Full menu</h1>
-            </div>
-            <div id="option-button">
-                <img src="assets/img/breakfast-icon.png" id="category-icon">
-                <h1>Breakfast</h1>
-            </div>
-            <div id="option-button">
-                <img src="assets/img/salad-icon.png" id="category-icon">
-                <h1>Lunch & Diner</h1>
-            </div>
-            <div id="option-button">
-                <img src="assets/img/sandwich-icon.png" id="category-icon">
-                <h1>Handhelds</h1>
-            </div>
-            <div id="option-button">
-                <img src="assets/img/sides-icon.png" id="category-icon">
-                <h1>Sides</h1>
-            </div>
-            <div id="option-button">
-                <img src="assets/img/dips-icon.png" id="category-icon">
-                <h1>Dips</h1>
-            </div>
-            <div id="option-button">
-                <img src="assets/img/drink-icon.png" id="category-icon">
-                <h1>Drinks</h1>
-            </div>
+
+    <a href="menu.php" class="option-button">
+        <img src="assets/img/highlights.png" id="category-icon">
+        <h1>Full menu</h1>
+    </a>
+
+    <a href="menu.php?category=1" class="option-button">
+        <img src="assets/img/breakfast-icon.png" id="category-icon">
+        <h1>Breakfast</h1>
+    </a>
+
+    <a href="menu.php?category=2" class="option-button">
+        <img src="assets/img/salad-icon.png" id="category-icon">
+        <h1>Lunch & Dinner</h1>
+    </a>
+
+    <a href="menu.php?category=3" class="option-button">
+        <img src="assets/img/sandwich-icon.png" id="category-icon">
+        <h1>Handhelds</h1>
+    </a>
+
+    <a href="menu.php?category=4" class="option-button">
+        <img src="assets/img/sides-icon.png" id="category-icon">
+        <h1>Sides</h1>
+    </a>
+
+    <a href="menu.php?category=5" class="option-button">
+        <img src="assets/img/dips-icon.png" id="category-icon">
+        <h1>Dips</h1>
+    </a>
+
+    <a href="menu.php?category=6" class="option-button">
+        <img src="assets/img/drink-icon.png" id="category-icon">
+        <h1>Drinks</h1>
+    </a>
+
+
         </div>
 
         
@@ -75,10 +100,20 @@ try {
         <?php if(!empty($product['filename'])): ?>
             <img src="assets/img/<?= htmlspecialchars($product['filename']); ?>" id="product-image"
                  alt="<?= htmlspecialchars($product['description']); ?>">
+                 
         <?php endif; ?>
 
         <h3><?= htmlspecialchars($product['name']); ?></h3>
-
+        
+    <div class="productinfo-container">
+        <div class="left-row">
+        
+        <h4>€ <?= htmlspecialchars($product['price']); ?></h4>
+        </div>
+        <div class="right-row">
+        <img src="assets/img/add-icon.png" id="add-button">
+        </div>
+    </div>
     </div>
 <?php endforeach; ?>
 </div>
