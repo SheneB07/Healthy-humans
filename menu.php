@@ -95,7 +95,8 @@ try {
         
 <div class="menu-items">
 <?php foreach($products as $product): ?>
-    <div class="menu-item">
+    <a href="product.php?id=<?= $product['product_id']; ?>" class="menu-link">
+        <div class="menu-item">
 
         <?php if(!empty($product['filename'])): ?>
             <img src="assets/img/<?= htmlspecialchars($product['filename']); ?>" id="product-image"
@@ -115,6 +116,7 @@ try {
         </div>
     </div>
     </div>
+    </a>
 <?php endforeach; ?>
 </div>
         

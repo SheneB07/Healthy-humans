@@ -91,7 +91,6 @@ h2{
     height: 130px;
     border-radius: 30px;
     background-color: white;
-    border: 1px solid black;
     margin-top: 40px;
     display: flex;
     align-items: center;
@@ -99,6 +98,12 @@ h2{
     flex-direction: column;
     overflow: hidden;
     text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.menu-link{
+    text-decoration: none;
+    color: black;
 }
 
 .option-button:hover{
@@ -144,6 +149,7 @@ h1{
     align-items: center;
     overflow: hidden;
     padding: 5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 /* Onderkant van scherm */

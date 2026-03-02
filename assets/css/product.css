@@ -1,0 +1,47 @@
+@font-face {
+    font-family: 'renos_roughregular';
+    src: url('renos-rough-webfont.woff') format('woff'),
+        url('renos-rough-webfont.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Noto Sans';
+    src: url('NotoSans-Italic-VariableFont_wdth,wght.ttf') format('ttf'),
+        url('NotoSans-VariableFont_wdth,wght.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #FCF5DA;
+}
+
+h1, h2 {
+    font-family: 'renos_roughregular', sans-serif;
+}
+
+p {
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.product-detail-container {
+    max-width: 800px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+.product-detail-image {
+    width: 300px;
+    border-radius: 12px;
+}
+
+#info-box{
+    width: 100px;
+    background-color: #F4E9C0;
+    
+}
