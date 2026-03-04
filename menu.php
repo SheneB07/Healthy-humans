@@ -95,7 +95,8 @@ try {
         
 <div class="menu-items">
 <?php foreach($products as $product): ?>
-    <div class="menu-item">
+    <a href="product.php?id=<?= $product['product_id']; ?>" class="menu-link">
+        <div class="menu-item">
 
         <?php if(!empty($product['filename'])): ?>
             <img src="assets/img/<?= htmlspecialchars($product['filename']); ?>" id="product-image"
@@ -115,6 +116,7 @@ try {
         </div>
     </div>
     </div>
+    </a>
 <?php endforeach; ?>
 </div>
         
@@ -122,9 +124,10 @@ try {
     </div>
     <div class="bottombar-container">
         <div id="pink-bar"></div>
-        <!-- <div id="cart-button">
+        <a href="cart.php" div id="cart-button">
             <img src="assets/img/cart.png" id="cart-image">
-        </div> -->
+            </a>
+        </div> 
     </div>
 
 </body>
