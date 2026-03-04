@@ -124,9 +124,10 @@ try {
     </div>
     <div class="bottombar-container">
         <div id="pink-bar"></div>
-        <!-- <div id="cart-button">
+        <a href="cart.php" div id="cart-button">
             <img src="assets/img/cart.png" id="cart-image">
-        </div> -->
+            </a>
+        </div> 
     </div>
 
 </body>
