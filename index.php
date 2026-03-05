@@ -1,6 +1,6 @@
 <?php
 session_start();
-session_destroy();
+unset($_SESSION['cart'], $_SESSION['pickupNumber']);
 
 include_once 'connection.php';
 

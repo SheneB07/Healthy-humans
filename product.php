@@ -24,6 +24,19 @@ try {
         die("Product not found.");
     }
 
+    $productForJs = [
+        'product_id'  => (int)($product['product_id'] ?? 0),
+        'name'        => $product['name'] ?? '',
+        'description' => $product['description'] ?? '',
+        'price'       => isset($product['price']) ? (float)$product['price'] : 0.0,
+        'calories'    => isset($product['kcal']) ? (int)$product['kcal'] : 0,
+        'image'       => !empty($product['filename'])
+            ? 'assets/img/' . $product['filename']
+            : '',
+        'category_id' => $product['category_id'] ?? null,
+        'image_id'    => $product['image_id'] ?? null,
+    ];
+
 } catch (PDOException $e) {
     die("Error: " . $e->getMessage());
 }
@@ -65,12 +78,53 @@ try {
     </div>
 
     <br><br>
-    <button>Add to Cart</button>
+    <button id="add-to-cart-button">Add to Cart</button>
     
     </div>
     </div>
 
 </div>
+
+<script>
+    (function () {
+        const productData = <?= json_encode($productForJs, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP) ?>;
+        const addButton = document.getElementById('add-to-cart-button');
+
+        if (!addButton || !productData) {
+            return;
+        }
+
+        addButton.addEventListener('click', function () {
+            fetch('api/addingProductToCart.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    product: productData,
+                    quantity: 1
+                })
+            })
+            .then(function (response) {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(function (data) {
+                if (!data || !data.success) {
+                    alert(data && data.error ? data.error : 'Failed to add to cart. Please try again.');
+                    return;
+                }
+
+                window.location.href = 'cart.php';
+            })
+            .catch(function () {
+                alert('Failed to add to cart. Please try again.');
+            });
+        });
+    })();
+</script>
 
 </body>
 </html>
