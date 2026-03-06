@@ -1,6 +1,8 @@
 (function () {
     const cartItemsContainer = document.getElementById('cartItems');
     const totalAmountEl = document.getElementById('cartTotalAmount');
+    const changeOrderButton = document.getElementById('changeOrderButton');
+    const checkoutButton = document.getElementById('checkoutButton');
 
     function updateTotalsFromResponse(data) {
         if (!data || !data.success) return;
@@ -115,6 +117,29 @@
         trashIcons.forEach(icon => {
             icon.addEventListener('click', () => handleRemoveAll(icon));
         });
+
+        if (changeOrderButton) {
+            changeOrderButton.addEventListener('click', () => {
+                window.location.href = 'menu.php';
+            });
+        }
+
+        if (checkoutButton) {
+            checkoutButton.addEventListener('click', () => {
+                callApi('api/creatingOrder.php', {})
+                    .then(data => {
+                        if (!data.success) {
+                            alert(data.error || 'Failed to create order. Please try again.');
+                            return;
+                        }
+
+                        window.location.href = 'checkout.php';
+                    })
+                    .catch(() => {
+                        alert('Failed to create order. Please try again.');
+                    });
+            });
+        }
     }
 
     document.addEventListener('DOMContentLoaded', initCartControls);

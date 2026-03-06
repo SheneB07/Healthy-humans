@@ -22,7 +22,20 @@ try {
 
     // You can adjust these to match your desired defaults
     $orderStatusId = 1; // e.g. 1 = PENDING in order_status table
-    $dineChoice = 'takeaway'; // or 'dine-in' depending on your UI
+
+    // Dine choice comes from the session (set on index.php via saveSession.php).
+    // Map the front-end values to DB codes (varchar(2)):
+    // - "DineIn"  -> "DI"
+    // - "TakeOut" -> "TA"
+    $sessionDine = $_SESSION['diningOption'] ?? null;
+    if ($sessionDine === 'DineIn') {
+        $dineChoice = 'DI';
+    } elseif ($sessionDine === 'TakeOut') {
+        $dineChoice = 'TA';
+    } else {
+        // default if somehow not set or unexpected
+        $dineChoice = 'DI';
+    }
 
     // Prepare insert: one row per product, all sharing same pickup_number
     $stmt = $pdo->prepare(
