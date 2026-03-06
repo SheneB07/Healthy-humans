@@ -93,7 +93,7 @@ function removeProductFromCartByName(string $name, int $quantity = 1, bool $remo
 }
 
 /**
- * Get cart items and a simple summary (itemCount, totalPrice).
+ * Get cart items and a simple summary (itemCount, totalPrice, totalCalories).
  */
 function getCartSummary(): array
 {
@@ -101,19 +101,23 @@ function getCartSummary(): array
 
     $itemCount = 0;
     $totalPrice = 0.0;
+    $totalCalories = 0;
 
     foreach ($items as $item) {
         $qty = (int)($item['quantity'] ?? 1);
         $price = (float)($item['price'] ?? 0);
+        $cal = (int)($item['calories'] ?? 0);
 
         $itemCount += $qty;
         $totalPrice += $price * $qty;
+        $totalCalories += $cal * $qty;
     }
 
     return [
         'items' => $items,
         'itemCount' => $itemCount,
         'totalPrice' => $totalPrice,
+        'totalCalories' => $totalCalories,
     ];
 }
 

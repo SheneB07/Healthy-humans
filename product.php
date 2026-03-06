@@ -1,6 +1,7 @@
 <?php
 include("connection.php");
 include("cart_functions.php");
+require_once 'lang.php';
 
 if (!isset($_GET['id'])) {
     die("Product not found.");
@@ -25,10 +26,13 @@ try {
         die("Product not found.");
     }
 
+    $translatedName = t('product.name.' . (string)$product['product_id'], $product['name']);
+    $translatedDescription = t('product.description.' . (string)$product['product_id'], $product['description']);
+
     $productForJs = [
         'product_id'  => (int)($product['product_id'] ?? 0),
-        'name'        => $product['name'] ?? '',
-        'description' => $product['description'] ?? '',
+        'name'        => $translatedName ?? '',
+        'description' => $translatedDescription ?? '',
         'price'       => isset($product['price']) ? (float)$product['price'] : 0.0,
         'calories'    => isset($product['kcal']) ? (int)$product['kcal'] : 0,
         'image'       => !empty($product['filename'])
@@ -56,11 +60,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
     // Use database product data (secure)
     $cartProduct = [
         'product_id'  => $product['product_id'],
-        'name'        => $product['name'],
+        'name'        => $translatedName,
         'price'       => $product['price'],
         'calories'    => $product['kcal'],
         'image'       => $product['filename'],
-        'description' => $product['description'],
+        'description' => $translatedDescription,
     ];
 
     addProductToCart($cartProduct, $quantity);
@@ -72,10 +76,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?= htmlspecialchars(getCurrentLanguage()); ?>">
 <head>
     <meta charset="UTF-8">
-    <title><?= htmlspecialchars($product['name']); ?></title>
+    <title><?= htmlspecialchars($translatedName); ?></title>
     <link rel="stylesheet" href="assets/css/product.css">
 </head>
 <body>
@@ -93,23 +97,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
              class="product-detail-image">
     <?php endif; ?>
 
-    <h1><?= htmlspecialchars($product['name']); ?></h1>
+    <h1><?= htmlspecialchars($translatedName); ?></h1>
 
-    <p><?= htmlspecialchars($product['description']); ?></p>
-    <p>(<?= htmlspecialchars($product['kcal']); ?> kcal)</p>
+    <p><?= htmlspecialchars($translatedDescription); ?></p>
+    <p>(<?= htmlspecialchars($product['kcal']); ?> <?= htmlspecialchars(t('product.kcal_suffix', 'kcal')); ?>)</p>
 
     <h2>€ <?= htmlspecialchars($product['price']); ?></h2>
     
     </div>
     <div class="buttons-container">
     <div id="back-button">
-    <a href="menu.php">Back to menu</a>
+    <a href="menu.php"><?= htmlspecialchars(t('product.back_to_menu', 'Back to menu')); ?></a>
     </div>
 
     <br><br>
     <form method="POST" class="cart-form">
     <button type="submit" name="add_to_cart" class="add-button">
-        Add to Cart
+        <?= htmlspecialchars(t('product.add_to_cart', 'Add to Cart')); ?>
     </button>
 
 </form>

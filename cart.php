@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once 'lang.php';
 
 if (!isset($_SESSION['cart'])) {
     $_SESSION['cart'] = [];
@@ -25,7 +26,7 @@ $itemCount = count($cart);
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?= htmlspecialchars(getCurrentLanguage()); ?>">
 
 <head>
     <meta charset="UTF-8">
@@ -38,7 +39,7 @@ $itemCount = count($cart);
 <body>
     <main class="cartPage">
         <img id="cartLogo" src="assets/img/logo_big_happy_herbivore_transparent.png" alt="cart logo">
-        <h1>Your Order</h1>
+        <h1><?= htmlspecialchars(t('cart.title', 'Your Order')); ?></h1>
         <?php if ($itemCount > 0): ?>
             <div id="cartItems" class="<?= $itemCount === 1 ? 'single-item' : 'multiple-items' ?>">
             <?php foreach ($cart as $item) { ?>
@@ -49,7 +50,7 @@ $itemCount = count($cart);
                             <p><?= $item['quantity'] ?>X <?= $item['name'] ?></p>
                         </div>
                         <div class="itemCaloriesAndPrice">
-                            <p><?= $item['calories'] ?> Cal</p>
+                            <p><?= htmlspecialchars($item['calories']); ?> <?= htmlspecialchars(t('cart.calories_suffix', 'Cal')); ?></p>
                             <p>€<?= number_format($item['price'], 2) ?></p>
                         </div>
                     </div>
@@ -59,7 +60,7 @@ $itemCount = count($cart);
                             <!-- <p class="ingredientList">
                                 <?= implode(', ', $item['ingredients']) ?>
                             </p> -->
-                            <p class="ingredientList"><?=$item['description'] ?>
+                            <p class="ingredientList"><?= htmlspecialchars(t('product.description.' . (string)($item['product_id'] ?? 0), $item['description'])); ?>
                             <div class="addingFunction">
                                 <button class="removeButton" data-item="<?= $item['name'] ?>">-</button>
                                 <p class="itemQuantity"><?= $item['quantity'] ?></p>
@@ -76,34 +77,45 @@ $itemCount = count($cart);
             </div>
 
             <div id="cartTotal" class="center-total">
-                <p>Total: €<span id="cartTotalAmount"><?= number_format(
-                    array_sum(array_map(
-                        fn($item) => ($item['price'] ?? 0) * ($item['quantity'] ?? 1),
+                <p>
+                    <?= htmlspecialchars(t('cart.total_label', 'Total:')); ?>
+                    €<span id="cartTotalAmount"><?= number_format(
+                        array_sum(array_map(
+                            fn($item) => ($item['price'] ?? 0) * ($item['quantity'] ?? 1),
+                            $cart
+                        )),
+                        2
+                    ) ?></span>
+                    <?= htmlspecialchars(t('cart.total_kcal_label', 'Total kcal:')); ?>
+                    <span id="cartTotalCalories"><?= array_sum(array_map(
+                        fn($item) => (int)($item['calories'] ?? 0) * (int)($item['quantity'] ?? 1),
                         $cart
-                    )),
-                    2
-                ) ?></span></p>
+                    )); ?></span>
+                </p>
             </div>
 
         <?php else: ?>
             <div id="cartItems" class="empty-cart">
-                <p class="emptyMessage">Your cart is empty.</p>
+                <p class="emptyMessage"><?= htmlspecialchars(t('cart.empty', 'Your cart is empty.')); ?></p>
             </div>
         <?php endif; ?>
 
         <div id="bottomButtons">
             <button id="changeOrderButton">
                 <img src="assets/img/changeOrderImg.png">
-                <p>Change Order</p>
+                <p><?= htmlspecialchars(t('cart.change_order', 'Change Order')); ?></p>
             </button>
 
             <button id="checkoutButton">
                 <img src="assets/img/checkoutImg.png">
-                <p>Checkout</p>
+                <p><?= htmlspecialchars(t('cart.checkout', 'Checkout')); ?></p>
             </button>
         </div>
     </main>
 
+    <script>
+        window.CART_EMPTY_MESSAGE = <?= json_encode(t('cart.empty', 'Your cart is empty.')); ?>;
+    </script>
     <script src="assets/js/cart.js"></script>
 
 </body>

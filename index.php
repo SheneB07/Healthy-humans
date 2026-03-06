@@ -1,21 +1,13 @@
 <?php
 session_start();
-unset($_SESSION['cart'], $_SESSION['pickupNumber']);
+unset($_SESSION['cart'], $_SESSION['pickupNumber'], $_SESSION['languageOption']);
 
 include_once 'connection.php';
-
-//prep for language switching. default is dutch, will rewrite later
-if (isset($_SESSION['languageOption'])) {
-    if ($_SESSION['languageOption'] == 'English') {
-        $languageChoice = 'English';
-    } elseif ($_SESSION['languageOption'] == 'Dutch') {
-        $languageChoice = 'Dutch';
-    }
-}
+require_once 'lang.php';
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?= htmlspecialchars(getCurrentLanguage()); ?>">
 
 <head>
     <meta charset="UTF-8">
@@ -39,19 +31,19 @@ if (isset($_SESSION['languageOption'])) {
 
             <div id="DutchOption" data-language="Dutch" class="languageOption">
                 <img style="width: 90%; height: auto; margin-top: 15%;" src="assets/img/NLIcon.png" alt="take out icon"><br>
-                <p>Dutch</p>
+                <p>Nederlands</p>
             </div>
         </div>
 
         <div id="diningOptions">
             <div id="DiningIn" data-dining="DineIn" class="diningOption">
                 <img style="width: 90%; height: auto; margin-top: 15%;" src="assets/img/eatInIcon.png" alt="eat in icon"> <br>
-                <p>Dine In</p>
+                <p class="diningLabel" data-key="dine_in">Dine In</p>
             </div>
 
             <div id="DiningOut" data-dining="TakeOut" class="diningOption">
                 <img style="width: 90%; height: auto; margin-top: 15%;" src="assets/img/takeOutIcon.png" alt="take out icon"><br>
-                <p>Take Out</p>
+                <p class="diningLabel" data-key="take_out">Take Out</p>
             </div>
         </div>
 
