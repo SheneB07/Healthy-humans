@@ -46,5 +46,6 @@ echo json_encode([
     'cartItems' => $summary['items'],
     'itemCount' => $summary['itemCount'],
     'totalPrice' => $summary['totalPrice'],
+    'totalCalories' => $summary['totalCalories'],
 ]);
 

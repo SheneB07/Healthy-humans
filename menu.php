@@ -1,5 +1,6 @@
 <?php
 include("connection.php");
+require_once 'lang.php';
 
 try {
 
@@ -32,7 +33,7 @@ try {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?= htmlspecialchars(getCurrentLanguage()); ?>">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,7 +48,7 @@ try {
         </div>
         <div class="top-right">
             <div id="menu-topbox">
-                <h2>Breakfast</h2>
+                <h2><?= htmlspecialchars(t('menu.header_title', 'Breakfast')); ?></h2>
             </div>
         </div>
     </div>
@@ -56,37 +57,37 @@ try {
 
     <a href="menu.php" class="option-button">
         <img src="assets/img/highlights.png" id="category-icon">
-        <h1>Full menu</h1>
+        <h1><?= htmlspecialchars(t('menu.category.full_menu', 'Full menu')); ?></h1>
     </a>
 
     <a href="menu.php?category=1" class="option-button">
         <img src="assets/img/breakfast-icon.png" id="category-icon">
-        <h1>Breakfast</h1>
+        <h1><?= htmlspecialchars(t('menu.category.breakfast', 'Breakfast')); ?></h1>
     </a>
 
     <a href="menu.php?category=2" class="option-button">
         <img src="assets/img/salad-icon.png" id="category-icon">
-        <h1>Lunch & Dinner</h1>
+        <h1><?= htmlspecialchars(t('menu.category.lunch_dinner', 'Lunch & Dinner')); ?></h1>
     </a>
 
     <a href="menu.php?category=3" class="option-button">
         <img src="assets/img/sandwich-icon.png" id="category-icon">
-        <h1>Handhelds</h1>
+        <h1><?= htmlspecialchars(t('menu.category.handhelds', 'Handhelds')); ?></h1>
     </a>
 
     <a href="menu.php?category=4" class="option-button">
         <img src="assets/img/sides-icon.png" id="category-icon">
-        <h1>Sides</h1>
+        <h1><?= htmlspecialchars(t('menu.category.sides', 'Sides')); ?></h1>
     </a>
 
     <a href="menu.php?category=5" class="option-button">
         <img src="assets/img/dips-icon.png" id="category-icon">
-        <h1>Dips</h1>
+        <h1><?= htmlspecialchars(t('menu.category.dips', 'Dips')); ?></h1>
     </a>
 
     <a href="menu.php?category=6" class="option-button">
         <img src="assets/img/drink-icon.png" id="category-icon">
-        <h1>Drinks</h1>
+        <h1><?= htmlspecialchars(t('menu.category.drinks', 'Drinks')); ?></h1>
     </a>
 
 
@@ -100,11 +101,11 @@ try {
 
         <?php if(!empty($product['filename'])): ?>
             <img src="assets/img/<?= htmlspecialchars($product['filename']); ?>" id="product-image"
-                 alt="<?= htmlspecialchars($product['description']); ?>">
+                 alt="<?= htmlspecialchars(t('product.description.' . (string)$product['product_id'], $product['description'])); ?>">
                  
         <?php endif; ?>
 
-        <h3><?= htmlspecialchars($product['name']); ?></h3>
+        <h3><?= htmlspecialchars(t('product.name.' . (string)$product['product_id'], $product['name'])); ?></h3>
         
     <div class="productinfo-container">
         <div class="left-row">

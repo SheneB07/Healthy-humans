@@ -2,6 +2,7 @@
 session_start();
 
 include_once 'connection.php';
+require_once 'lang.php';
 
 if (isset($_SESSION['pickupNumber'])) {
     $pickupNumber = $_SESSION['pickupNumber'];
@@ -12,7 +13,7 @@ if (isset($_SESSION['pickupNumber'])) {
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?= htmlspecialchars(getCurrentLanguage()); ?>">
 
 <head>
     <meta charset="UTF-8">
@@ -20,21 +21,21 @@ if (isset($_SESSION['pickupNumber'])) {
 
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/checkout.css">
-    <title>Order overlook</title>
+    <title><?= htmlspecialchars(t('checkout.page_title', 'Order overlook')); ?></title>
 </head>
 
 <body>
     <main>
         <img id="logo" src="assets/img/logo_big_complete_transparent.webp" alt="logo"> 
         <div id="orderOverlook">
-            <h1>Order succesful!</h1>
+            <h1><?= htmlspecialchars(t('checkout.order_successful', 'Order succesful!')); ?></h1>
             <div id="orderDetails">
                 <p>#<?= $pickupNumber ?></p>
             </div>
-            <p>Don't forget your receipt</p>
+            <p><?= htmlspecialchars(t('checkout.reminder_receipt', "Don't forget your receipt")); ?></p>
         </div>    
         <div id="automaticReturn">
-            <p>Automatically returning to start..</p>
+            <p><?= htmlspecialchars(t('checkout.auto_return', 'Automatically returning to start..')); ?></p>
         </div>
         <script src="assets/js/checkout.js"></script>
     </main>
