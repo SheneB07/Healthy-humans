@@ -1,5 +1,6 @@
 <?php
 include("connection.php");
+include("cart_functions.php");
 
 if (!isset($_GET['id'])) {
     die("Product not found.");
@@ -42,6 +43,34 @@ try {
 }
 ?>
 
+<?php
+// Handle Add To Cart
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
+
+    $quantity = isset($_POST['quantity']) ? (int)$_POST['quantity'] : 1;
+
+    if ($quantity < 1) {
+        $quantity = 1;
+    }
+
+    // Use database product data (secure)
+    $cartProduct = [
+        'product_id'  => $product['product_id'],
+        'name'        => $product['name'],
+        'price'       => $product['price'],
+        'calories'    => $product['kcal'],
+        'image'       => $product['filename'],
+        'description' => $product['description'],
+    ];
+
+    addProductToCart($cartProduct, $quantity);
+
+    // Redirect to cart page
+    header("Location: cart.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -78,7 +107,12 @@ try {
     </div>
 
     <br><br>
-    <button id="add-to-cart-button">Add to Cart</button>
+    <form method="POST" class="cart-form">
+    <button type="submit" name="add_to_cart" class="add-button">
+        Add to Cart
+    </button>
+
+</form>
     
     </div>
     </div>
