@@ -1,7 +1,7 @@
 <?php
-$dsn = "mysql:host=127.0.0.1;dbname=happy_herbivore;charset=utf8mb4";
-$username = "root";
-$password = "";
+$dsn = "mysql:host=127.0.0.1;dbname=u240660_happy_herbivore;charset=utf8mb4";
+$username = "u240660_happy_herbivore";
+$password = "LLZxy8EaXhEdQ42weVKZ";
 
 try {
     //create pdo instance
