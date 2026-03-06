@@ -112,6 +112,10 @@ try {
         <h4>€ <?= htmlspecialchars($product['price']); ?></h4>
         </div>
         <div class="right-row">
+
+
+
+</form>
         <img src="assets/img/add-icon.png" id="add-button">
         </div>
     </div>
@@ -124,10 +128,16 @@ try {
     </div>
     <div class="bottombar-container">
         <div id="pink-bar"></div>
+        <div class="button-row">
+        <a href="index.php" div id="cancel-button">
+            <img src="assets/img/home-icon.png" id="cancel-image">
+        </a>
+        
         <a href="cart.php" div id="cart-button">
             <img src="assets/img/cart.png" id="cart-image">
-            </a>
-        </div> 
+        </a>
+        </div>
+        </div>
     </div>
 
 </body>

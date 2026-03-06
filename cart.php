@@ -45,7 +45,7 @@ $itemCount = count($cart);
                 <div class="cartItem" data-name="<?= htmlspecialchars($item['name'], ENT_QUOTES) ?>">
                     <div class="itemInfo">
                         <div class="itemName">
-                            <img src="<?= $item['image'] ?>" alt="cart item image">
+                            <img src="assets/img/<?= $item['image'] ?>" alt="cart item image">
                             <p><?= $item['quantity'] ?>X <?= $item['name'] ?></p>
                         </div>
                         <div class="itemCaloriesAndPrice">
