@@ -3,6 +3,7 @@
     const totalAmountEl = document.getElementById('cartTotalAmount');
     const changeOrderButton = document.getElementById('changeOrderButton');
     const checkoutButton = document.getElementById('checkoutButton');
+    const totalCaloriesEl = document.getElementById('cartTotalCalories');
 
     function updateTotalsFromResponse(data) {
         if (!data || !data.success) return;
@@ -11,10 +12,16 @@
             totalAmountEl.textContent = (data.totalPrice ?? 0).toFixed(2);
         }
 
+        if (totalCaloriesEl) {
+            const totalKcal = data.totalCalories ?? 0;
+            totalCaloriesEl.textContent = totalKcal.toString();
+        }
+
         if (!cartItemsContainer) return;
 
         if (!data.cartItems || data.cartItems.length === 0) {
-            cartItemsContainer.innerHTML = '<p class="emptyMessage">Your cart is empty.</p>';
+            const emptyText = (window.CART_EMPTY_MESSAGE || 'Your cart is empty.');
+            cartItemsContainer.innerHTML = '<p class="emptyMessage">' + emptyText + '</p>';
             cartItemsContainer.classList.remove('single-item', 'multiple-items');
             cartItemsContainer.classList.add('empty-cart');
         } else {

@@ -18,6 +18,27 @@ function startingClick() {
 document.addEventListener("click", startingClick);
 
 
+const diningTranslations = {
+    English: {
+        dine_in: "Dine In",
+        take_out: "Take Out",
+    },
+    Dutch: {
+        dine_in: "Hier eten",
+        take_out: "Meenemen",
+    }
+};
+
+function updateDiningLabels(language) {
+    const set = diningTranslations[language] || diningTranslations.English;
+    document.querySelectorAll(".diningLabel").forEach(label => {
+        const key = label.dataset.key;
+        if (set[key]) {
+            label.textContent = set[key];
+        }
+    });
+}
+
 //Loops through all the language options
 document.querySelectorAll(".languageOption").forEach(option => {
     //Adds a click event to each language option
@@ -27,7 +48,9 @@ document.querySelectorAll(".languageOption").forEach(option => {
         const language = option.dataset.language;
 
         // saves the chosen language to session 
-        saveToSession("languageOption", language);
+        saveToSession("languageOption", language, () => {
+            updateDiningLabels(language);
+        });
 
         languageOption.style.display = "none";
         diningOption.style.display = "flex";
