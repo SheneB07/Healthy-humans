@@ -115,7 +115,7 @@ try {
 
 
 
-</form>
+
         <img src="assets/img/add-icon.png" id="add-button">
         </div>
     </div>
@@ -129,16 +129,53 @@ try {
     <div class="bottombar-container">
         <div id="pink-bar"></div>
         <div class="button-row">
-        <a href="index.php" div id="cancel-button">
+        <a href="index.php" id="cancel-button">
             <img src="assets/img/home-icon.png" id="cancel-image">
         </a>
         
-        <a href="cart.php" div id="cart-button">
+        <a href="cart.php" id="cart-button">
             <img src="assets/img/cart.png" id="cart-image">
         </a>
         </div>
         </div>
     </div>
+
+    <div id="cancelPopup" class="popup">
+    <div class="popup-content">
+        <h5>Cancel Order?</h5>
+        <p>Are you sure you want to cancel your order?</p>
+
+        <div class="popup-buttons">
+            <button id="closePopup">No</button>
+            <button id="confirmCancel">Yes, Cancel</button>
+        </div>
+    </div>
+
+    </div>
+
+
+
+<script>
+
+const cancelButton = document.getElementById("cancel-button");
+const popup = document.getElementById("cancelPopup");
+const closePopup = document.getElementById("closePopup");
+const confirmCancel = document.getElementById("confirmCancel");
+
+cancelButton.addEventListener("click", function(e) {
+    e.preventDefault(); 
+    popup.style.display = "flex";
+});
+
+closePopup.addEventListener("click", function() {
+    popup.style.display = "none";
+});
+
+confirmCancel.addEventListener("click", function() {
+    window.location.href = "index.php";
+});
+
+</script>
 
 </body>
 </html>
