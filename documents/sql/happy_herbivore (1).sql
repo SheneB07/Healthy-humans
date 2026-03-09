@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 06 mrt 2026 om 12:10
+-- Gegenereerd op: 09 mrt 2026 om 13:10
 -- Serverversie: 10.4.32-MariaDB
 -- PHP-versie: 8.2.12
 
@@ -101,9 +101,20 @@ CREATE TABLE `orders` (
   `price` decimal(25,2) NOT NULL,
   `datetime` datetime NOT NULL,
   `ordered_product` int(11) NOT NULL,
-  `dineChoice` varchar(2) NOT NULL,
+  `dineChoice` tinyint(4) NOT NULL,
   `quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `orders`
+--
+
+INSERT INTO `orders` (`order_id`, `order_status_id`, `pickup_number`, `price`, `datetime`, `ordered_product`, `dineChoice`, `quantity`) VALUES
+(11, 1, 1, 10.50, '2026-03-06 10:38:59', 4, 0, 1),
+(12, 1, 2, 9.50, '2026-03-06 10:56:40', 5, 0, 1),
+(13, 1, 3, 9.50, '2026-03-08 23:56:39', 5, 0, 1),
+(14, 1, 3, 5.00, '2026-03-08 23:56:39', 3, 0, 1),
+(15, 1, 4, 1.00, '2026-03-09 10:49:05', 21, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -141,6 +152,7 @@ CREATE TABLE `products` (
   `description` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `price` decimal(25,2) NOT NULL,
   `kcal` varchar(25) NOT NULL,
+  `diet_type` text NOT NULL,
   `available` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -159,32 +171,32 @@ CREATE TABLE `translations` (
 -- Gegevens worden geëxporteerd voor tabel `products`
 --
 
-INSERT INTO `products` (`product_id`, `category_id`, `image_id`, `name`, `description`, `price`, `kcal`, `available`) VALUES
-(1, 1, 1, 'Morning Boost Açaí Bowl', 'A chilled blend of açaí and banana topped with crunchy granola, chia seeds, and coconut.', 7.50, '320', 1),
-(2, 1, 2, 'The Garden Breakfast Wrap', 'Whole-grain wrap with fluffy scrambled eggs, baby spinach, and a light yogurt-herb sauce.', 6.50, '280', 1),
-(3, 1, 3, 'Peanut Butter & Cacao Toast', 'Sourdough toast with 100% natural peanut butter, banana, and a sprinkle of cacao nibs.', 5.00, '240', 1),
-(4, 2, 4, 'Tofu Power Tahini Bowl', 'Tri-color quinoa, maple-glazed tofu, roasted sweet potatoes, and kale with tahini dressing.', 10.50, '480', 1),
-(5, 2, 5, 'The Supergreen Harvest', 'Massaged kale, edamame, avocado, cucumber, and toasted pumpkin seeds with lemon-olive oil.', 9.50, '310', 1),
-(6, 2, 6, 'Mediterranean Falafel Bowl', 'Baked falafel, hummus, pickled red onions, cherry tomatoes, and cucumber on a bed of greens.', 10.00, '440', 1),
-(7, 3, 7, 'Oven-Baked Sweet Potato Wedges', 'Seasoned with smoked paprika. (Best with Avocado Lime Dip).', 4.50, '260', 1),
-(8, 3, 8, 'Zucchini Fries', 'Crispy breaded zucchini sticks. (Best with Greek Yogurt Ranch).', 4.50, '190', 1),
-(9, 3, 9, 'Baked Falafel Bites - 5pc', '', 5.00, '230', 1),
-(10, 3, 10, 'Mini Veggie Platter & Hummus', 'Fresh crunch: Celery, carrots, and cucumber.', 4.00, '160', 1),
-(11, 4, 11, 'Zesty Chickpea Hummus Wrap', 'Spiced chickpeas, shredded carrots, crisp lettuce, and signature hummus in a whole-wheat wrap.', 8.50, '410', 1),
-(12, 4, 12, 'Avocado & Halloumi Toastie', 'Grilled halloumi cheese, smashed avocado, and chili flakes on thick-cut multi-grain bread.', 9.00, '460', 1),
-(13, 4, 13, 'Smoky BBQ Jackfruit Slider', 'Pulled jackfruit in BBQ sauce with a crunchy purple slaw on a vegan brioche bun.', 7.50, '350', 1),
-(18, 5, 18, 'Classic Hummus', '', 1.00, '120', 1),
-(19, 5, 19, 'Avocado Lime Dip', '', 1.00, '110', 1),
-(20, 5, 20, 'Greek Yogurt Ranch', '', 1.00, '90', 1),
-(21, 5, 21, 'Spicy Sriracha Mayo', '', 1.00, '180', 1),
-(22, 5, 22, 'Peanut Satay Sauce', '', 1.00, '200', 1),
-(25, 6, 25, 'Green Glow Smoothie', 'Spinach, pineapple, cucumber, and coconut water.', 3.50, '120', 1),
-(26, 6, 26, 'Iced Matcha Latte', 'Lightly sweetened matcha green tea with almond milk.', 3.00, '90', 1),
-(27, 6, 27, 'Fruit-Infused Water', 'Freshly infused water with a choice of lemon-mint, strawberry-basil, or cucumber-lime.', 1.50, '0', 1),
-(28, 6, 28, 'Berry Blast Smoothie', 'A creamy blend of strawberries, blueberries, and raspberries with almond milk.', 3.80, '140 ', 1),
-(29, 6, 29, 'Citrus Cooler', 'A refreshing mix of orange juice, sparkling water, and a hint of lime.', 3.00, '90 ', 1),
-(31, 1, 3, 'Overnight Oats: Apple Pie Style', 'Oats soaked in almond milk with grated apple, cinnamon, and crushed walnuts.', 5.50, '290', 1),
-(32, 2, 1, 'Warm Teriyaki Tempeh Bowl ', 'Steamed brown rice, seared tempeh, broccoli, and shredded carrots with a ginger-soy glaze.', 11.00, '500', 1);
+INSERT INTO `products` (`product_id`, `category_id`, `image_id`, `name`, `description`, `price`, `kcal`, `diet_type`, `available`) VALUES
+(1, 1, 1, 'Morning Boost Açaí Bowl', 'A chilled blend of açaí and banana topped with crunchy granola, chia seeds, and coconut.', 7.50, '320', 'vegetarian-icon.PNG', 1),
+(2, 1, 2, 'The Garden Breakfast Wrap', 'Whole-grain wrap with fluffy scrambled eggs, baby spinach, and a light yogurt-herb sauce.', 6.50, '280', 'vegan-icon.png', 1),
+(3, 1, 3, 'Peanut Butter & Cacao Toast', 'Sourdough toast with 100% natural peanut butter, banana, and a sprinkle of cacao nibs.', 5.00, '240', 'vegetarian-icon.PNG', 1),
+(4, 2, 4, 'Tofu Power Tahini Bowl', 'Tri-color quinoa, maple-glazed tofu, roasted sweet potatoes, and kale with tahini dressing.', 10.50, '480', 'vegetarian-icon.PNG', 1),
+(5, 2, 5, 'The Supergreen Harvest', 'Massaged kale, edamame, avocado, cucumber, and toasted pumpkin seeds with lemon-olive oil.', 9.50, '310', 'vegetarian-icon.PNG', 1),
+(6, 2, 6, 'Mediterranean Falafel Bowl', 'Baked falafel, hummus, pickled red onions, cherry tomatoes, and cucumber on a bed of greens.', 10.00, '440', 'vegetarian-icon.PNG', 1),
+(7, 3, 7, 'Oven-Baked Sweet Potato Wedges', 'Seasoned with smoked paprika. (Best with Avocado Lime Dip).', 4.50, '260', 'vegetarian-icon.PNG', 1),
+(8, 3, 8, 'Zucchini Fries', 'Crispy breaded zucchini sticks. (Best with Greek Yogurt Ranch).', 4.50, '190', 'vegan-icon.png', 1),
+(9, 3, 9, 'Baked Falafel Bites - 5pc', '', 5.00, '230', 'vegetarian-icon.PNG', 1),
+(10, 3, 10, 'Mini Veggie Platter & Hummus', 'Fresh crunch: Celery, carrots, and cucumber.', 4.00, '160', 'vegetarian-icon.PNG', 1),
+(11, 4, 11, 'Zesty Chickpea Hummus Wrap', 'Spiced chickpeas, shredded carrots, crisp lettuce, and signature hummus in a whole-wheat wrap.', 8.50, '410', 'vegetarian-icon.PNG', 1),
+(12, 4, 12, 'Avocado & Halloumi Toastie', 'Grilled halloumi cheese, smashed avocado, and chili flakes on thick-cut multi-grain bread.', 9.00, '460', 'vegan-icon.png', 1),
+(13, 4, 13, 'Smoky BBQ Jackfruit Slider', 'Pulled jackfruit in BBQ sauce with a crunchy purple slaw on a vegan brioche bun.', 7.50, '350', 'vegetarian-icon.PNG', 1),
+(18, 5, 18, 'Classic Hummus', '', 1.00, '120', 'vegetarian-icon.PNG', 1),
+(19, 5, 19, 'Avocado Lime Dip', '', 1.00, '110', 'vegetarian-icon.PNG', 1),
+(20, 5, 20, 'Greek Yogurt Ranch', '', 1.00, '90', 'vegan-icon.png', 1),
+(21, 5, 21, 'Spicy Sriracha Mayo', '', 1.00, '180', 'vegetarian-icon.PNG', 1),
+(22, 5, 22, 'Peanut Satay Sauce', '', 1.00, '200', 'vegetarian-icon.PNG', 1),
+(25, 6, 25, 'Green Glow Smoothie', 'Spinach, pineapple, cucumber, and coconut water.', 3.50, '120', 'vegetarian-icon.PNG', 1),
+(26, 6, 26, 'Iced Matcha Latte', 'Lightly sweetened matcha green tea with almond milk.', 3.00, '90', 'vegetarian-icon.PNG', 1),
+(27, 6, 27, 'Fruit-Infused Water', 'Freshly infused water with a choice of lemon-mint, strawberry-basil, or cucumber-lime.', 1.50, '0', 'vegetarian-icon.PNG', 1),
+(28, 6, 28, 'Berry Blast Smoothie', 'A creamy blend of strawberries, blueberries, and raspberries with almond milk.', 3.80, '140 ', 'vegetarian-icon.PNG', 1),
+(29, 6, 29, 'Citrus Cooler', 'A refreshing mix of orange juice, sparkling water, and a hint of lime.', 3.00, '90 ', 'vegetarian-icon.PNG', 1),
+(31, 1, 30, 'Overnight Oats: Apple Pie Style', 'Oats soaked in almond milk with grated apple, cinnamon, and crushed walnuts.', 5.50, '290', 'vegetarian-icon.PNG', 1),
+(32, 2, 31, 'Warm Teriyaki Tempeh Bowl ', 'Steamed brown rice, seared tempeh, broccoli, and shredded carrots with a ginger-soy glaze.', 11.00, '500', 'vegetarian-icon.PNG', 1);
 
 --
 -- Gegevens worden geëxporteerd voor tabel `translations`
@@ -216,9 +228,7 @@ INSERT INTO `translations` (`id`, `language`, `key`, `text`) VALUES
 (23, 'en', 'checkout.order_successful', 'Order succesful!'),
 (24, 'en', 'checkout.reminder_receipt', 'Don''t forget your receipt'),
 (25, 'en', 'checkout.auto_return', 'Automatically returning to start..'),
-(26, 'en', 'cart.total_kcal_label', 'Total kcal:');
-
-INSERT INTO `translations` (`id`, `language`, `key`, `text`) VALUES
+(26, 'en', 'cart.total_kcal_label', 'Total kcal:'),
 (27, 'nl', 'product.description.1', 'Een verkoelende mix van açaí en banaan, afgetopt met knapperige granola, chiazaad en kokos.'),
 (28, 'nl', 'product.description.2', 'Volkoren wrap met luchtige roerei, babyspinazie en een lichte yoghurt-kruiden saus.'),
 (29, 'nl', 'product.description.3', 'Desemtoast met 100% natuurlijke pindakaas, banaan en een snufje cacaonibs.'),
@@ -244,9 +254,7 @@ INSERT INTO `translations` (`id`, `language`, `key`, `text`) VALUES
 (49, 'nl', 'product.description.29', 'Verkoelende mix van sinaasappelsap, bruiswater en een vleugje limoen.'),
 (50, 'nl', 'product.description.31', 'Overnight oats in appelgebak-stijl met amandelmelk, appel, kaneel en walnoten.'),
 (51, 'nl', 'product.description.32', 'Kom met zilvervliesrijst, gebakken tempeh, broccoli en wortel met een teriyaki-gember-sojasaus.'),
-(52, 'nl', 'cart.total_kcal_label', 'Totaal kcal:');
-
-INSERT INTO `translations` (`id`, `language`, `key`, `text`) VALUES
+(52, 'nl', 'cart.total_kcal_label', 'Totaal kcal:'),
 (53, 'nl', 'start.language.english', 'Engels'),
 (54, 'nl', 'start.language.dutch', 'Nederlands'),
 (55, 'nl', 'start.dine_in', 'Hier eten'),
@@ -271,9 +279,7 @@ INSERT INTO `translations` (`id`, `language`, `key`, `text`) VALUES
 (74, 'nl', 'checkout.page_title', 'Overzicht bestelling'),
 (75, 'nl', 'checkout.order_successful', 'Bestelling geslaagd!'),
 (76, 'nl', 'checkout.reminder_receipt', 'Vergeet je bonnetje niet.'),
-(77, 'nl', 'checkout.auto_return', 'Je wordt automatisch teruggestuurd naar het startscherm...');
-
-INSERT INTO `translations` (`id`, `language`, `key`, `text`) VALUES
+(77, 'nl', 'checkout.auto_return', 'Je wordt automatisch teruggestuurd naar het startscherm...'),
 (78, 'en', 'product.name.1', 'Morning Boost Açaí Bowl'),
 (79, 'en', 'product.name.2', 'The Garden Breakfast Wrap'),
 (80, 'en', 'product.name.3', 'Peanut Butter & Cacao Toast'),
@@ -390,7 +396,7 @@ ALTER TABLE `images`
 -- AUTO_INCREMENT voor een tabel `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT voor een tabel `order_status`
