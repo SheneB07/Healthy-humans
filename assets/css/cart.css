@@ -44,10 +44,18 @@ hr{
 
 }
 
+.cartItem.dipItem {
+    .editingCartItem{
+        gap: 50%;
+    }
+}
+
 .itemName img{
     border-radius: 10%;
-    width:15%;
-    height:15%;
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    flex-shrink: 0;
     box-shadow: #000 0px 0px 10px;
 }
 
@@ -94,15 +102,14 @@ hr{
     margin-left: 5%;
 }
 
-.lefBottom{
+.leftBottom{
     display: flex;
     flex-direction: column;
     align-items: left;
     justify-content: left;
-    width: 100%;
+    width: 560;
     text-align: left;
     padding: 2%;
-    padding-left: 15%;
 }
 
 .ingredientList {
@@ -113,8 +120,8 @@ hr{
 }
 
 .addingFunction{
-    width: 30%;
-    height: auto;
+    width: 160px;
+    height: 80px;
     display: flex;
     flex-direction: row;
     justify-content: left;
@@ -135,14 +142,17 @@ hr{
 }
 
 .editAndDeleteFunction{
-    width: 30%;
-    height: auto;
+    width: 175px !important;
+    height: 70px !important;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 10%;
     margin-right: 8%;
+    flex: 0 0 175px;
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
 .editIcon, .trashIcon {
