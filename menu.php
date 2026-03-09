@@ -23,6 +23,25 @@ try {
         ");
     }
 
+    $header_title = t('menu.category.full_menu', 'Full Menu'); 
+
+if ($category_id) {
+    $stmtCategory = $pdo->prepare("
+        SELECT name 
+        FROM categories 
+        WHERE category_id = :category_id
+    ");
+
+    $stmtCategory->bindParam(':category_id', $category_id, PDO::PARAM_INT);
+    $stmtCategory->execute();
+
+    $category = $stmtCategory->fetch(PDO::FETCH_ASSOC);
+
+    if ($category) {
+        $header_title = $category['name'];
+    }
+}
+
     $stmt->execute();
     $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -48,7 +67,7 @@ try {
         </div>
         <div class="top-right">
             <div id="menu-topbox">
-                <h2><?= htmlspecialchars(t('menu.header_title', 'Breakfast')); ?></h2>
+                <h2><?= htmlspecialchars($header_title); ?></h2>
             </div>
         </div>
     </div>
@@ -96,13 +115,14 @@ try {
         
 <div class="menu-items">
 <?php foreach($products as $product): ?>
+    <div class="menu-item">
     <a href="product.php?id=<?= $product['product_id']; ?>" class="menu-link">
-        <div class="menu-item">
+        
 
         <?php if(!empty($product['filename'])): ?>
             <img src="assets/img/<?= htmlspecialchars($product['filename']); ?>" id="product-image"
                  alt="<?= htmlspecialchars(t('product.description.' . (string)$product['product_id'], $product['description'])); ?>">
-                 
+                
         <?php endif; ?>
 
         <h3><?= htmlspecialchars(t('product.name.' . (string)$product['product_id'], $product['name'])); ?></h3>
@@ -113,11 +133,10 @@ try {
         <h4>€ <?= htmlspecialchars($product['price']); ?></h4>
         </div>
         <div class="right-row">
-
-
-
-
-        <img src="assets/img/add-icon.png" id="add-button">
+            
+        <a href="cart_action.php?id=<?= $product['product_id']; ?>">
+    <img src="assets/img/add-icon.png" class="add-button">
+</a>
         </div>
     </div>
     </div>

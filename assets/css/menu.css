@@ -212,7 +212,7 @@ h4{
     font-family: NotoSans, sans-serif;
 }
 
-#add-button{
+.add-button{
     width: 40px;
     height: auto;
 }

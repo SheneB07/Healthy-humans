@@ -11,11 +11,11 @@ $product_id = (int) $_GET['id'];
 
 try {
     $stmt = $pdo->prepare("
-        SELECT products.*, images.filename, images.description AS image_description
-        FROM products
-        LEFT JOIN images ON products.image_id = images.image_id
-        WHERE products.product_id = :id
-    ");
+    SELECT products.*, products.diet_type, images.filename, images.description AS image_description
+    FROM products
+    LEFT JOIN images ON products.image_id = images.image_id
+    WHERE products.product_id = :id
+");
     
     $stmt->bindParam(':id', $product_id, PDO::PARAM_INT);
     $stmt->execute();
@@ -41,6 +41,11 @@ try {
         'category_id' => $product['category_id'] ?? null,
         'image_id'    => $product['image_id'] ?? null,
     ];
+
+    $dietIcons = [
+    'vegan' => 'vegan-icon.png',
+    'vegetarian' => 'vegetarian-icon.PNG'
+];
 
 } catch (PDOException $e) {
     die("Error: " . $e->getMessage());
@@ -75,6 +80,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
 }
 ?>
 
+
+
 <!DOCTYPE html>
 <html lang="<?= htmlspecialchars(getCurrentLanguage()); ?>">
 <head>
@@ -98,6 +105,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
     <?php endif; ?>
 
     <h1><?= htmlspecialchars($translatedName); ?></h1>
+
+    <?php if (!empty($product['diet_type']) && isset($dietIcons[$product['diet_type']])): ?>
+    <div class="diet-type">
+        <img src="assets/img/<?= $dietIcons[$product['diet_type']] ?>"
+             alt="<?= htmlspecialchars($product['diet_type']) ?>"
+             class="diet-icon">
+        <span><?= htmlspecialchars(ucfirst($product['diet_type'])) ?></span>
+    </div>
+<?php endif; ?>
 
     <p><?= htmlspecialchars($translatedDescription); ?></p>
     <p>(<?= htmlspecialchars($product['kcal']); ?> <?= htmlspecialchars(t('product.kcal_suffix', 'kcal')); ?>)</p>
