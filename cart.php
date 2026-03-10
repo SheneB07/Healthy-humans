@@ -117,8 +117,20 @@ $itemCount = count($cart);
         </div>
     </main>
 
+    <div id="cartPopup" class="cart-popup cart-popup-hidden">
+        <div class="cart-popup-backdrop"></div>
+        <div class="cart-popup-content">
+            <p id="cartPopupMessage"></p>
+            <button id="cartPopupClose">
+                <?= htmlspecialchars(t('cart.popup_close', 'OK')); ?>
+            </button>
+        </div>
+    </div>
+
     <script>
         window.CART_EMPTY_MESSAGE = <?= json_encode(t('cart.empty', 'Your cart is empty.')); ?>;
+        window.CART_GENERIC_ERROR = <?= json_encode(t('cart.error_generic', 'Something went wrong. Please try again.')); ?>;
+        window.CART_NETWORK_ERROR = <?= json_encode(t('cart.network_error', 'Failed to reach the server. Please try again.')); ?>;
     </script>
     <script src="assets/js/cart.js"></script>
 
