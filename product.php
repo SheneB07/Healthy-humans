@@ -111,29 +111,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
        
     <div id="info-box">
         <div class="info-container">
-    <?php if(!empty($product['filename'])): ?>
-        <img src="assets/img/<?= htmlspecialchars($product['filename']); ?>" 
-             alt="<?= htmlspecialchars($product['image_description']); ?>"
-             class="product-detail-image">
-    <?php endif; ?>
 
-    <h1><?= htmlspecialchars($translatedName); ?></h1>
+<div class="image-wrapper">
 
-    <?php if (!empty($product['diet_type']) && isset($dietIcons[$product['diet_type']])): ?>
-    <div class="diet-type">
-        <img src="assets/img/<?= $dietIcons[$product['diet_type']] ?>"
-             alt="<?= htmlspecialchars($product['diet_type']) ?>"
-             class="diet-icon">
-        <span><?= htmlspecialchars(ucfirst($product['diet_type'])) ?></span>
-    </div>
+<?php if(!empty($product['filename'])): ?>
+    <img src="assets/img/<?= htmlspecialchars($product['filename']); ?>" 
+         alt="<?= htmlspecialchars($product['image_description']); ?>"
+         class="product-detail-image">
 <?php endif; ?>
 
-    <p><?= htmlspecialchars($translatedDescription); ?></p>
-    <p>(<?= htmlspecialchars($product['kcal']); ?> <?= htmlspecialchars(t('product.kcal_suffix', 'kcal')); ?>)</p>
+<?php if(!empty($product['diet_type'])): ?>
+    <img src="assets/img/<?= htmlspecialchars($product['diet_type']); ?>" 
+         class="diet-icon"
+         alt="<?= htmlspecialchars($product['diet_type']); ?>">
+<?php endif; ?>
 
-    <h2>€ <?= htmlspecialchars($product['price']); ?></h2>
-    
-    </div>
+</div>
+
+<h1><?= htmlspecialchars($translatedName); ?></h1>
+
+<p><?= htmlspecialchars($translatedDescription); ?></p>
+
+<p>(<?= htmlspecialchars($product['kcal']); ?> <?= htmlspecialchars(t('product.kcal_suffix', 'kcal')); ?>)</p>
+
+<h2>€ <?= htmlspecialchars($product['price']); ?></h2>
+
+</div>
     <div class="buttons-container">
     <div id="back-button">
     <a href="menu.php"><?= htmlspecialchars(t('product.back_to_menu', 'Back to menu')); ?></a>

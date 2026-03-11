@@ -136,32 +136,35 @@ if ($category_id) {
         
 <div class="menu-items">
 <?php foreach($products as $product): ?>
-    <div class="menu-item">
-    <a href="product.php?id=<?= $product['product_id']; ?>" class="menu-link">
-        
 
-        <?php if(!empty($product['filename'])): ?>
-            <img src="assets/img/<?= htmlspecialchars($product['filename']); ?>" id="product-image"
-                 alt="<?= htmlspecialchars(t('product.description.' . (string)$product['product_id'], $product['description'])); ?>">
-                
-        <?php endif; ?>
+<div class="menu-item">
 
-        <h3><?= htmlspecialchars(t('product.name.' . (string)$product['product_id'], $product['name'])); ?></h3>
-        
-    <div class="productinfo-container">
-        <div class="left-row">
-        
-        <h4>€ <?= htmlspecialchars($product['price']); ?></h4>
-        </div>
-        <div class="right-row">
-            
-        <a href="cart_action.php?id=<?= $product['product_id']; ?>">
-    <img src="assets/img/add-icon.png" class="add-button">
+<a href="product.php?id=<?= $product['product_id']; ?>" class="menu-link">
+
+<?php if(!empty($product['filename'])): ?>
+<img src="assets/img/<?= htmlspecialchars($product['filename']); ?>"
+     class="product-image"
+     alt="<?= htmlspecialchars(t('product.description.' . (string)$product['product_id'], $product['description'])); ?>">
+<?php endif; ?>
+
+<h3><?= htmlspecialchars(t('product.name.' . (string)$product['product_id'], $product['name'])); ?></h3>
+
 </a>
-        </div>
-    </div>
-    </div>
-    </a>
+
+<div class="productinfo-container">
+<div class="left-row">
+<h4>€ <?= htmlspecialchars($product['price']); ?></h4>
+</div>
+
+<div class="right-row">
+<a href="cart_action.php?id=<?= $product['product_id']; ?>">
+<img src="assets/img/add-icon.png" class="add-button">
+</a>
+</div>
+</div>
+
+</div>
+
 <?php endforeach; ?>
 </div>
         

@@ -1,0 +1,90 @@
+# 🥗 Healthy Herbivore Kiosk
+
+A modern self-service restaurant kiosk application designed for the Healthy Herbivore concept.
+The kiosk allows customers to quickly browse the menu, customize their order, and place it without staff assistance.
+
+The system focuses on speed, clarity, and dietary transparency, ensuring customers can easily identify vegan and vegetarian options before ordering.
+
+# 📌 Overview
+
+The Healthy Herbivore Kiosk is an interactive touchscreen interface placed inside the restaurant. It guides customers through the entire ordering process:
+
+- Choose how they want to dine.
+- Select their preferred language.
+- Browse the menu.
+- View dietary information.
+- Add items to their cart.
+- Edit or remove items.
+- Place the order and receive a receipt.
+- The goal is to reduce queue times, improve customer experience, and clearly communicate plant-based dietary options.
+
+# ✨ Features
+🖥️ Kiosk Welcome Screen
+
+Customers begin by selecting how they want to enjoy their order:
+
+- To-Go
+- Eat Here
+
+# 🌍 Language Selection
+
+The kiosk supports multiple languages so customers can interact with the system comfortably.
+Example languages:
+
+- English
+- Dutch
+
+# 📋 Menu Browsing
+
+Customers can easily browse through the restaurant’s menu.
+Each menu item includes:
+
+- Name
+- Description
+- Price
+- Dietary label
+
+# 🌱 Dietary Indicators
+
+Transparency is a core goal of the Healthy Herbivore project.
+Menu items clearly show whether they are:
+
+- Vegan 🌱
+- Vegetarian 🥬
+
+This helps customers make quick and informed choices.
+
+# 🛒 Cart System
+
+Customers can add items to their cart while browsing.
+Cart functionality includes:
+
+- Add items
+- Remove items
+- Change quantity
+- Edit selections
+- View order total
+
+# ✏️ Order Editing
+
+Before placing the order, customers can review their cart and:
+
+- Modify item quantities
+- Remove items
+- Review pricing
+
+This ensures order accuracy.
+
+# 🧾 Order Placement & Receipt
+
+Once satisfied with their order, customers can:
+
+- Place the order
+- Receive a receipt with order details
+
+The receipt includes:
+
+- Ordered items
+- Total price
+- Order number
+- Dining option (Eat Here / To-Go)

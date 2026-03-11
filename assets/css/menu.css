@@ -153,48 +153,14 @@ h1{
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-/* Onderkant van scherm */
-.bottombar-container{
-    width: 100%;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    row-gap: 40px;
-}
 
-#pink-bar{
-    width: 1000px;
-    height: 45px;
-    border-radius: 40px;
-    background-color: #FFB181;
-    margin-top: 100px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-#cart-button{
-    width: 175px;
-    height: 125px;
-    background-color: #8CD003;
-    border-radius: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 70px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-#cart-image{
-    width: 90px;
-    height: 100px;
-    padding: 10px;
-}
-
-#product-image{
+.product-image{
     width: 225px;
     height: auto;
     border-radius: 10%;
     padding-bottom: 15px;
+    display: block;
+    margin: 0 auto;
 }
 
 h3{
@@ -228,30 +194,6 @@ h4{
 
 .left-row{
     margin-top: 5px;
-}
-
-.button-row{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    gap: 50px;
-}
-
-#cancel-button{
-    width: 175px;
-    height: 125px;
-    background-color: #8CD003;
-    border-radius: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-#cancel-image{
-    width: 100px;
-    height: auto;
 }
 
 .popup{
@@ -354,24 +296,25 @@ h4{
 }
 
 /* Title */
+
 .popup-content h2{
     margin-bottom:10px;
 }
 
-/* Text */
+
 .popup-content p{
     margin-bottom:30px;
     font-size:18px;
 }
 
-/* Button container */
+
 .popup-buttons{
     display:flex;
     justify-content:space-between;
     gap:15px;
 }
 
-/* Confirm button */
+
 #confirmCancel{
     flex:1;
     height:55px;
@@ -392,7 +335,7 @@ h4{
     transform:scale(1.03);
 }
 
-/* Cancel button */
+
 #closePopup{
     flex:1;
     height:55px;
@@ -419,3 +362,65 @@ h5{
     padding: 0px;
     margin: 0px;
 }
+
+/* Onderkant van scherm */
+.bottombar-container{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 40px;
+}
+
+#pink-bar{
+    width: 1000px;
+    height: 45px;
+    border-radius: 40px;
+    background-color: #FFB181;
+    margin-top: 100px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+#cart-button{
+    width: 175px;
+    height: 125px;
+    background-color: #8CD003;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 70px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+#cart-image{
+    width: 90px;
+    height: 100px;
+    padding: 10px;
+}
+
+.button-row{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 50px;
+}
+
+#cancel-button{
+    width: 175px;
+    height: 125px;
+    background-color: #8CD003;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+#cancel-image{
+    width: 100px;
+    height: auto;
+}
+
