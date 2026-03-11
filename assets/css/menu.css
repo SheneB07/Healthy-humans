@@ -214,7 +214,7 @@ h4{
 }
 
 .popup-content{
-    background-color: #FFB181;
+    background-color: #FCF5DA;
     padding:40px 50px;
     border-radius:18px;
     text-align:center;
@@ -251,14 +251,14 @@ h4{
     font-size:18px;
     font-weight:600;
 
-    background:#ff5a5a;
-    color:white;
+    background:#FFB181;
+    color:rgb(0, 0, 0);
 
     transition:0.2s;
 }
 
 #confirmCancel:hover{
-    background:#e74c3c;
+    background:rgb(227, 83, 67);
     transform:scale(1.03);
 }
 
@@ -272,7 +272,7 @@ h4{
     font-size:18px;
     font-weight:600;
 
-    background:white;
+    background: #8CD003;
     color:#333;
 
     transition:0.2s;

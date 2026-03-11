@@ -42,8 +42,12 @@ $itemCount = count($cart);
         <h1><?= htmlspecialchars(t('cart.title', 'Your Order')); ?></h1>
         <?php if ($itemCount > 0): ?>
             <div id="cartItems" class="<?= $itemCount === 1 ? 'single-item' : 'multiple-items' ?>">
-            <?php foreach ($cart as $item) { ?>
-                <div class="cartItem" data-name="<?= htmlspecialchars($item['name'], ENT_QUOTES) ?>">
+            <?php foreach ($cart as $item) {
+                $productId  = (int)($item['product_id'] ?? 0);
+                $categoryId = (int)($item['category_id'] ?? 0);
+                $isDip = ($categoryId === 5) || in_array($productId, [18, 19, 20, 21, 22], true);
+            ?>
+                <div class="cartItem<?= $isDip ? ' dipItem' : '' ?>" data-name="<?= htmlspecialchars($item['name'], ENT_QUOTES) ?>">
                     <div class="itemInfo">
                         <div class="itemName">
                             <img src="assets/img/<?= $item['image'] ?>" alt="cart item image">
@@ -113,8 +117,20 @@ $itemCount = count($cart);
         </div>
     </main>
 
+    <div id="cartPopup" class="cart-popup cart-popup-hidden">
+        <div class="cart-popup-backdrop"></div>
+        <div class="cart-popup-content">
+            <p id="cartPopupMessage"></p>
+            <button id="cartPopupClose">
+                <?= htmlspecialchars(t('cart.popup_close', 'OK')); ?>
+            </button>
+        </div>
+    </div>
+
     <script>
         window.CART_EMPTY_MESSAGE = <?= json_encode(t('cart.empty', 'Your cart is empty.')); ?>;
+        window.CART_GENERIC_ERROR = <?= json_encode(t('cart.error_generic', 'Something went wrong. Please try again.')); ?>;
+        window.CART_NETWORK_ERROR = <?= json_encode(t('cart.network_error', 'Failed to reach the server. Please try again.')); ?>;
     </script>
     <script src="assets/js/cart.js"></script>
 

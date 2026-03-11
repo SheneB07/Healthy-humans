@@ -5,6 +5,34 @@
     const checkoutButton = document.getElementById('checkoutButton');
     const totalCaloriesEl = document.getElementById('cartTotalCalories');
 
+    const popupEl = document.getElementById('cartPopup');
+    const popupMessageEl = document.getElementById('cartPopupMessage');
+    const popupCloseBtn = document.getElementById('cartPopupClose');
+    const popupBackdrop = popupEl ? popupEl.querySelector('.cart-popup-backdrop') : null;
+
+    function showCartPopup(message) {
+        if (!popupEl || !popupMessageEl) {
+            window.alert(message);
+            return;
+        }
+
+        popupMessageEl.textContent = message;
+        popupEl.classList.remove('cart-popup-hidden');
+    }
+
+    function hideCartPopup() {
+        if (!popupEl) return;
+        popupEl.classList.add('cart-popup-hidden');
+    }
+
+    if (popupCloseBtn) {
+        popupCloseBtn.addEventListener('click', hideCartPopup);
+    }
+
+    if (popupBackdrop) {
+        popupBackdrop.addEventListener('click', hideCartPopup);
+    }
+
     function updateTotalsFromResponse(data) {
         if (!data || !data.success) return;
 
@@ -40,11 +68,19 @@
             body: JSON.stringify(payload)
         });
 
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
+        let data = null;
+        try {
+            data = await response.json();
+        } catch (_) {
+            data = null;
         }
 
-        return response.json();
+        if (!response.ok) {
+            const msg = (data && data.error) || window.CART_GENERIC_ERROR || 'Something went wrong. Please try again.';
+            throw new Error(msg);
+        }
+
+        return data;
     }
 
     function handleQuantityChange(button, isIncrement) {
@@ -59,7 +95,7 @@
             { name: name }
         ).then(data => {
             if (!data.success) {
-                alert(data.error || 'Something went wrong');
+                showCartPopup(data.error || window.CART_GENERIC_ERROR || 'Something went wrong. Please try again.');
                 return;
             }
 
@@ -80,8 +116,9 @@
                     nameLabel.textContent = updatedItem.quantity + 'X ' + updatedItem.name;
                 }
             }
-        }).catch(() => {
-            alert('Failed to update cart. Please try again.');
+        }).catch((err) => {
+            const msg = err && err.message ? err.message : (window.CART_NETWORK_ERROR || 'Failed to update cart. Please try again.');
+            showCartPopup(msg);
         });
     }
 
@@ -97,14 +134,15 @@
             removeAll: true
         }).then(data => {
             if (!data.success) {
-                alert(data.error || 'Something went wrong');
+                showCartPopup(data.error || window.CART_GENERIC_ERROR || 'Something went wrong. Please try again.');
                 return;
             }
 
             updateTotalsFromResponse(data);
             cartItemEl.remove();
-        }).catch(() => {
-            alert('Failed to remove item. Please try again.');
+        }).catch((err) => {
+            const msg = err && err.message ? err.message : (window.CART_NETWORK_ERROR || 'Failed to remove item. Please try again.');
+            showCartPopup(msg);
         });
     }
 
@@ -133,17 +171,25 @@
 
         if (checkoutButton) {
             checkoutButton.addEventListener('click', () => {
+                const hasItems = cartItemsContainer && cartItemsContainer.querySelector('.cartItem');
+                if (!hasItems) {
+                    const emptyText = window.CART_EMPTY_MESSAGE || 'Your cart is empty.';
+                    showCartPopup(emptyText);
+                    return;
+                }
+
                 callApi('api/creatingOrder.php', {})
                     .then(data => {
                         if (!data.success) {
-                            alert(data.error || 'Failed to create order. Please try again.');
+                            showCartPopup(data.error || window.CART_GENERIC_ERROR || 'Failed to create order. Please try again.');
                             return;
                         }
 
                         window.location.href = 'checkout.php';
                     })
-                    .catch(() => {
-                        alert('Failed to create order. Please try again.');
+                    .catch((err) => {
+                        const msg = err && err.message ? err.message : (window.CART_NETWORK_ERROR || 'Failed to create order. Please try again.');
+                        showCartPopup(msg);
                     });
             });
         }
