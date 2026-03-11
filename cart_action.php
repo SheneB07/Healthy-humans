@@ -2,6 +2,7 @@
 session_start();
 require_once 'connection.php';
 require_once 'cart_functions.php';
+require_once 'lang.php';
 
 if (!isset($_GET['id'])) {
     header("Location: menu.php");
@@ -24,7 +25,26 @@ $product = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if ($product) {
     addProductToCart($product);
+
+    $categoryId = (int)($product['category_id'] ?? 0);
+    if ($categoryId === 3) {
+        $_SESSION['hh_show_dip_recs'] = true;
+        $id = (string)($product['product_id'] ?? '');
+        $fallbackName = (string)($product['name'] ?? '');
+        $_SESSION['hh_last_added_name'] = t('product.name.' . $id, $fallbackName);
+    }
 }
 
-header("Location: menu.php");
+$redirect = 'menu.php';
+if (!empty($_SERVER['HTTP_REFERER'])) {
+    $ref = parse_url($_SERVER['HTTP_REFERER']);
+    $path = $ref['path'] ?? '';
+    $query = isset($ref['query']) ? ('?' . $ref['query']) : '';
+
+    if ($path && str_ends_with(strtolower($path), 'menu.php')) {
+        $redirect = 'menu.php' . $query;
+    }
+}
+
+header("Location: " . $redirect);
 exit;

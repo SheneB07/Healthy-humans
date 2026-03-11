@@ -33,11 +33,17 @@ if (isset($_SESSION['pickupNumber'])) {
                 <p>#<?= $pickupNumber ?></p>
             </div>
             <p><?= htmlspecialchars(t('checkout.reminder_receipt', "Don't forget your receipt")); ?></p>
+            <a href="receipt.php" id="printReceiptLink">
+                <button id="printReceiptButton" type="button">
+                    <?= htmlspecialchars(t('checkout.print_receipt', 'Print receipt')); ?>
+                </button>
+            </a>
         </div>    
         <div id="automaticReturn">
             <p><?= htmlspecialchars(t('checkout.auto_return', 'Automatically returning to start..')); ?></p>
         </div>
         <script src="assets/js/checkout.js"></script>
+        <script src="assets/js/fullscreen.js"></script>
     </main>
 
 </body>

@@ -49,6 +49,7 @@ require_once 'lang.php';
 
     </main>
     <script src="assets/js/startscherm.js"></script>
+    <script src="assets/js/fullscreen.js"></script>
 
 </body>
 

@@ -1,4 +1,5 @@
 <?php
+session_start();
 include("connection.php");
 require_once 'lang.php';
 
@@ -45,6 +46,26 @@ if ($category_id) {
     $stmt->execute();
     $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
+    // One-time dip recommendations after adding a side.
+    $showDipRecs = !empty($_SESSION['hh_show_dip_recs']);
+    $lastAddedName = isset($_SESSION['hh_last_added_name']) ? (string)$_SESSION['hh_last_added_name'] : '';
+    if ($showDipRecs) {
+        unset($_SESSION['hh_show_dip_recs'], $_SESSION['hh_last_added_name']);
+
+        $stmtDips = $pdo->prepare("
+            SELECT p.product_id, p.name, p.description, p.price, i.filename
+            FROM products p
+            LEFT JOIN images i ON p.image_id = i.image_id
+            WHERE p.category_id = 5
+            ORDER BY p.product_id ASC
+            LIMIT 3
+        ");
+        $stmtDips->execute();
+        $dipRecommendations = $stmtDips->fetchAll(PDO::FETCH_ASSOC);
+    } else {
+        $dipRecommendations = [];
+    }
+
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
     exit;
@@ -89,12 +110,12 @@ if ($category_id) {
         <h1><?= htmlspecialchars(t('menu.category.lunch_dinner', 'Lunch & Dinner')); ?></h1>
     </a>
 
-    <a href="menu.php?category=3" class="option-button">
+    <a href="menu.php?category=4" class="option-button">
         <img src="assets/img/sandwich-icon.png" id="category-icon">
         <h1><?= htmlspecialchars(t('menu.category.handhelds', 'Handhelds')); ?></h1>
     </a>
 
-    <a href="menu.php?category=4" class="option-button">
+    <a href="menu.php?category=3" class="option-button">
         <img src="assets/img/sides-icon.png" id="category-icon">
         <h1><?= htmlspecialchars(t('menu.category.sides', 'Sides')); ?></h1>
     </a>
@@ -162,12 +183,12 @@ if ($category_id) {
 
     <div id="cancelPopup" class="popup">
     <div class="popup-content">
-        <h5>Cancel Order?</h5>
-        <p>Are you sure you want to cancel your order?</p>
+        <h5><?= htmlspecialchars(t('menu.cancel.title', 'Cancel order?')); ?></h5>
+        <p><?= htmlspecialchars(t('menu.cancel.confirm', 'Are you sure you want to cancel your order?')); ?></p>
 
         <div class="popup-buttons">
-            <button id="closePopup">No</button>
-            <button id="confirmCancel">Yes, Cancel</button>
+            <button id="closePopup"><?= htmlspecialchars(t('menu.cancel.no', 'No')); ?></button>
+            <button id="confirmCancel"><?= htmlspecialchars(t('menu.cancel.yes', 'Yes, cancel')); ?></button>
         </div>
     </div>
 
@@ -196,6 +217,56 @@ confirmCancel.addEventListener("click", function() {
 });
 
 </script>
+
+<?php if (!empty($showDipRecs) && !empty($dipRecommendations)): ?>
+<div id="dipRecsPopup" class="popup" style="display:flex;">
+    <div class="popup-content dip-recs">
+        <h5><?= htmlspecialchars(t('menu.dip_recs.title', 'Try a dip with that?')); ?></h5>
+        <?php if (!empty($lastAddedName)): ?>
+            <p><?= htmlspecialchars(t('menu.dip_recs.subtitle', 'Great with:')) ?> <strong><?= htmlspecialchars($lastAddedName); ?></strong></p>
+        <?php else: ?>
+            <p><?= htmlspecialchars(t('menu.dip_recs.subtitle_generic', 'These go great with your side:')); ?></p>
+        <?php endif; ?>
+
+        <div class="dip-recs-list">
+            <?php foreach ($dipRecommendations as $dip): ?>
+                <a class="dip-recs-item" href="cart_action.php?id=<?= (int)$dip['product_id']; ?>">
+                    <?php if (!empty($dip['filename'])): ?>
+                        <img src="assets/img/<?= htmlspecialchars($dip['filename']); ?>" alt="">
+                    <?php endif; ?>
+                    <div class="dip-recs-meta">
+                        <div class="dip-recs-name"><?= htmlspecialchars(t('product.name.' . (string)$dip['product_id'], $dip['name'])); ?></div>
+                        <div class="dip-recs-price">€ <?= htmlspecialchars($dip['price']); ?></div>
+                    </div>
+                    <img src="assets/img/add-icon.png" class="dip-recs-add" alt="">
+                </a>
+            <?php endforeach; ?>
+        </div>
+
+        <div class="popup-buttons">
+            <button id="closeDipRecs"><?= htmlspecialchars(t('menu.dip_recs.close', 'No thanks')); ?></button>
+            <a id="goToCartFromRecs" href="cart.php" style="flex:1; text-decoration:none;">
+                <button type="button" style="width:100%; height:55px; cursor:pointer; border-radius:12px; border:none; font-size:18px; font-weight:600; background:#8CD003; color:#333; transition:0.2s;">
+                    <?= htmlspecialchars(t('menu.dip_recs.go_to_cart', 'Go to cart')); ?>
+                </button>
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function () {
+        const popup = document.getElementById('dipRecsPopup');
+        const closeBtn = document.getElementById('closeDipRecs');
+        if (!popup || !closeBtn) return;
+        closeBtn.addEventListener('click', function () {
+            popup.style.display = 'none';
+        });
+    })();
+</script>
+<?php endif; ?>
+
+<script src="assets/js/fullscreen.js"></script>
 
 </body>
 </html>

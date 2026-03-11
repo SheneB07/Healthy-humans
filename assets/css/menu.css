@@ -281,6 +281,78 @@ h4{
     box-shadow: 0 15px 40px rgba(0,0,0,0.25);
 }
 
+.popup-content.dip-recs{
+    width: 560px;
+    max-width: 92vw;
+}
+
+.dip-recs-list{
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin: 18px 0 26px;
+    max-height: 360px;
+    overflow: auto;
+    padding-right: 6px;
+}
+
+.dip-recs-item{
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    color: inherit;
+    background: #fff;
+    border-radius: 14px;
+    padding: 10px 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.dip-recs-item:hover{
+    background-color: #F4E9C0;
+}
+
+.dip-recs-item img{
+    width: 64px;
+    height: 64px;
+    border-radius: 12px;
+    object-fit: cover;
+}
+
+.dip-recs-meta{
+    flex: 1;
+    text-align: left;
+}
+
+.dip-recs-name{
+    font-family: NotoSans, sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 4px;
+}
+
+#closeDipRecs{
+    border-radius: 12px;
+    border: none;
+    font-size: 18px;
+    font-weight: 600;
+    background: #FFB181;
+    color: #333;
+    transition: 0.2s;
+}
+
+.dip-recs-price{
+    font-family: NotoSans, sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.dip-recs-add{
+    width: 34px !important;
+    height: auto !important;
+    border-radius: 0 !important;
+}
+
 /* Title */
 .popup-content h2{
     margin-bottom:10px;
