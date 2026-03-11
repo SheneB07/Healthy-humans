@@ -74,8 +74,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
 
     addProductToCart($cartProduct, $quantity);
 
-    // Redirect to cart page
-    header("Location: cart.php");
+    // If a side was added, show dip recommendations once on return to the menu.
+    $categoryId = (int)($product['category_id'] ?? 0);
+    if ($categoryId === 3) {
+        $_SESSION['hh_show_dip_recs'] = true;
+        $_SESSION['hh_last_added_name'] = (string)($translatedName ?? '');
+        header("Location: menu.php?category=3");
+        exit;
+    }
+
+    // Otherwise, go back to the menu (keep category context when possible).
+    $redirect = 'menu.php';
+    if ($categoryId > 0) {
+        $redirect = 'menu.php?category=' . $categoryId;
+    }
+    header("Location: " . $redirect);
     exit;
 }
 ?>
@@ -182,6 +195,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_to_cart'])) {
         });
     })();
 </script>
+
+<script src="assets/js/fullscreen.js"></script>
 
 </body>
 </html>

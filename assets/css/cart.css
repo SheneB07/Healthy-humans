@@ -42,13 +42,15 @@ hr{
     background-color: #DEFF78;
     border-radius: 50px;
     padding: 10px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
 
 }
 
-.cartItem.dipItem {
-    .editingCartItem{
-        gap: 50%;
-    }
+.cartItem.dipItem .editingCartItem{
+    gap: 50%;
 }
 
 .itemName img{
@@ -108,7 +110,7 @@ hr{
     flex-direction: column;
     align-items: left;
     justify-content: left;
-    width: 560;
+    width: 560px;
     text-align: left;
     padding: 2%;
 }
@@ -118,6 +120,11 @@ hr{
     text-align: left;
     font-size: 20px;
     padding-left: 5%;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
 }
 
 .addingFunction{

@@ -64,7 +64,7 @@ $itemCount = count($cart);
                             <!-- <p class="ingredientList">
                                 <?= implode(', ', $item['ingredients']) ?>
                             </p> -->
-                            <p class="ingredientList"><?= htmlspecialchars(t('product.description.' . (string)($item['product_id'] ?? 0), $item['description'])); ?>
+                            <p class="ingredientList"><?= htmlspecialchars(t('product.description.' . (string)($item['product_id'] ?? 0), $item['description'])); ?></p>
                             <div class="addingFunction">
                                 <button class="removeButton" data-item="<?= $item['name'] ?>">-</button>
                                 <p class="itemQuantity"><?= $item['quantity'] ?></p>
@@ -72,7 +72,7 @@ $itemCount = count($cart);
                             </div>
                         </div>
                         <div class="editAndDeleteFunction">
-                            <img src="assets/img/editIcon.png" class="editIcon" alt="Edit Item">
+                            <img src="assets/img/editIcon1.png" class="editIcon" alt="Edit Item">
                             <img src="assets/img/trashIcon.png" class="trashIcon" alt="Remove Item">
                         </div>
                     </div>
@@ -133,6 +133,7 @@ $itemCount = count($cart);
         window.CART_NETWORK_ERROR = <?= json_encode(t('cart.network_error', 'Failed to reach the server. Please try again.')); ?>;
     </script>
     <script src="assets/js/cart.js"></script>
+    <script src="assets/js/fullscreen.js"></script>
 
 </body>
 
