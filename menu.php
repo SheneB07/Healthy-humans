@@ -89,12 +89,12 @@ if ($category_id) {
         <h1><?= htmlspecialchars(t('menu.category.lunch_dinner', 'Lunch & Dinner')); ?></h1>
     </a>
 
-    <a href="menu.php?category=3" class="option-button">
+    <a href="menu.php?category=4" class="option-button">
         <img src="assets/img/sandwich-icon.png" id="category-icon">
         <h1><?= htmlspecialchars(t('menu.category.handhelds', 'Handhelds')); ?></h1>
     </a>
 
-    <a href="menu.php?category=4" class="option-button">
+    <a href="menu.php?category=3" class="option-button">
         <img src="assets/img/sides-icon.png" id="category-icon">
         <h1><?= htmlspecialchars(t('menu.category.sides', 'Sides')); ?></h1>
     </a>
@@ -115,32 +115,35 @@ if ($category_id) {
         
 <div class="menu-items">
 <?php foreach($products as $product): ?>
-    <div class="menu-item">
-    <a href="product.php?id=<?= $product['product_id']; ?>" class="menu-link">
-        
 
-        <?php if(!empty($product['filename'])): ?>
-            <img src="assets/img/<?= htmlspecialchars($product['filename']); ?>" id="product-image"
-                 alt="<?= htmlspecialchars(t('product.description.' . (string)$product['product_id'], $product['description'])); ?>">
-                
-        <?php endif; ?>
+<div class="menu-item">
 
-        <h3><?= htmlspecialchars(t('product.name.' . (string)$product['product_id'], $product['name'])); ?></h3>
-        
-    <div class="productinfo-container">
-        <div class="left-row">
-        
-        <h4>€ <?= htmlspecialchars($product['price']); ?></h4>
-        </div>
-        <div class="right-row">
-            
-        <a href="cart_action.php?id=<?= $product['product_id']; ?>">
-    <img src="assets/img/add-icon.png" class="add-button">
+<a href="product.php?id=<?= $product['product_id']; ?>" class="menu-link">
+
+<?php if(!empty($product['filename'])): ?>
+<img src="assets/img/<?= htmlspecialchars($product['filename']); ?>"
+     class="product-image"
+     alt="<?= htmlspecialchars(t('product.description.' . (string)$product['product_id'], $product['description'])); ?>">
+<?php endif; ?>
+
+<h3><?= htmlspecialchars(t('product.name.' . (string)$product['product_id'], $product['name'])); ?></h3>
+
 </a>
-        </div>
-    </div>
-    </div>
-    </a>
+
+<div class="productinfo-container">
+<div class="left-row">
+<h4>€ <?= htmlspecialchars($product['price']); ?></h4>
+</div>
+
+<div class="right-row">
+<a href="cart_action.php?id=<?= $product['product_id']; ?>">
+<img src="assets/img/add-icon.png" class="add-button">
+</a>
+</div>
+</div>
+
+</div>
+
 <?php endforeach; ?>
 </div>
         

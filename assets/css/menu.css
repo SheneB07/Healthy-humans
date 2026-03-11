@@ -153,6 +153,143 @@ h1{
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
+
+.product-image{
+    width: 225px;
+    height: auto;
+    border-radius: 10%;
+    padding-bottom: 15px;
+    display: block;
+    margin: 0 auto;
+}
+
+h3{
+    margin: 0;
+    font-size: 20px;
+    font-family: NotoSans, sans-serif;
+    font-weight: 500;
+    text-align: center;
+}
+
+h4{
+    margin: 0;
+    font-size: 26px;
+    font-weight: bold;
+    font-family: NotoSans, sans-serif;
+}
+
+.add-button{
+    width: 40px;
+    height: auto;
+}
+
+.productinfo-container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    column-gap: 75px;
+    justify-content: center;
+    padding-top: 15px;
+}
+
+.left-row{
+    margin-top: 5px;
+}
+
+.popup{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.6);
+
+    justify-content:center;
+    align-items:center;
+}
+
+.popup.show{
+    display:flex;
+}
+
+.popup-content{
+    background-color: #FCF5DA;
+    padding:40px 50px;
+    border-radius:18px;
+    text-align:center;
+    width:350px;
+
+    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+}
+
+
+.popup-content h2{
+    margin-bottom:10px;
+}
+
+
+.popup-content p{
+    margin-bottom:30px;
+    font-size:18px;
+}
+
+
+.popup-buttons{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+}
+
+
+#confirmCancel{
+    flex:1;
+    height:55px;
+    cursor:pointer;
+    border-radius:12px;
+    border:none;
+    font-size:18px;
+    font-weight:600;
+
+    background:#FFB181;
+    color:rgb(0, 0, 0);
+
+    transition:0.2s;
+}
+
+#confirmCancel:hover{
+    background:rgb(227, 83, 67);
+    transform:scale(1.03);
+}
+
+
+#closePopup{
+    flex:1;
+    height:55px;
+    cursor:pointer;
+    border-radius:12px;
+    border:none;
+    font-size:18px;
+    font-weight:600;
+
+    background: #8CD003;
+    color:#333;
+
+    transition:0.2s;
+}
+
+#closePopup:hover{
+    background:#f1f1f1;
+    transform:scale(1.03);
+}
+
+h5{
+    font-size: 50px;
+    font-family: NotoSans, sans-serif;
+    padding: 0px;
+    margin: 0px;
+}
+
 /* Onderkant van scherm */
 .bottombar-container{
     width: 100%;
@@ -190,46 +327,6 @@ h1{
     padding: 10px;
 }
 
-#product-image{
-    width: 225px;
-    height: auto;
-    border-radius: 10%;
-    padding-bottom: 15px;
-}
-
-h3{
-    margin: 0;
-    font-size: 20px;
-    font-family: NotoSans, sans-serif;
-    font-weight: 500;
-    text-align: center;
-}
-
-h4{
-    margin: 0;
-    font-size: 26px;
-    font-weight: bold;
-    font-family: NotoSans, sans-serif;
-}
-
-.add-button{
-    width: 40px;
-    height: auto;
-}
-
-.productinfo-container{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    column-gap: 75px;
-    justify-content: center;
-    padding-top: 15px;
-}
-
-.left-row{
-    margin-top: 5px;
-}
-
 .button-row{
     width: 100%;
     display: flex;
@@ -254,96 +351,3 @@ h4{
     height: auto;
 }
 
-.popup{
-    display:none;
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.6);
-
-    justify-content:center;
-    align-items:center;
-}
-
-.popup.show{
-    display:flex;
-}
-
-.popup-content{
-    background-color: #FCF5DA;
-    padding:40px 50px;
-    border-radius:18px;
-    text-align:center;
-    width:350px;
-
-    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
-}
-
-/* Title */
-.popup-content h2{
-    margin-bottom:10px;
-}
-
-/* Text */
-.popup-content p{
-    margin-bottom:30px;
-    font-size:18px;
-}
-
-/* Button container */
-.popup-buttons{
-    display:flex;
-    justify-content:space-between;
-    gap:15px;
-}
-
-/* Confirm button */
-#confirmCancel{
-    flex:1;
-    height:55px;
-    cursor:pointer;
-    border-radius:12px;
-    border:none;
-    font-size:18px;
-    font-weight:600;
-
-    background:#FFB181;
-    color:rgb(0, 0, 0);
-
-    transition:0.2s;
-}
-
-#confirmCancel:hover{
-    background:rgb(227, 83, 67);
-    transform:scale(1.03);
-}
-
-/* Cancel button */
-#closePopup{
-    flex:1;
-    height:55px;
-    cursor:pointer;
-    border-radius:12px;
-    border:none;
-    font-size:18px;
-    font-weight:600;
-
-    background: #8CD003;
-    color:#333;
-
-    transition:0.2s;
-}
-
-#closePopup:hover{
-    background:#f1f1f1;
-    transform:scale(1.03);
-}
-
-h5{
-    font-size: 50px;
-    font-family: NotoSans, sans-serif;
-    padding: 0px;
-    margin: 0px;
-}
